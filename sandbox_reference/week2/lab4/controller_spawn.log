@@ -1,0 +1,22 @@
+[INFO] [1745800100.123456789] [controller_manager]: update rate is 100 Hz
+[INFO] [1745800100.234567890] [controller_manager]: Loading robot_description from topic /robot_description
+[INFO] [1745800100.345678901] [controller_manager]: Loaded URDF, found 1 controllable joint: j1
+[INFO] [1745800100.456789012] [resource_manager]: Loading hardware 'MinimalSystem' (mock_components/GenericSystem)
+[INFO] [1745800100.567890123] [resource_manager]: Initialized hardware 'MinimalSystem'
+[INFO] [1745800100.678901234] [resource_manager]: Configured hardware 'MinimalSystem'
+[INFO] [1745800100.789012345] [resource_manager]: Activated hardware 'MinimalSystem'
+[INFO] [1745800101.012345678] [controller_manager]: Loading controller 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[INFO] [1745800101.123456789] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[INFO] [1745800101.234567890] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[INFO] [1745800101.345678901] [controller_manager]: Activating controller 'joint_state_broadcaster'
+[INFO] [1745800101.456789012] [spawner_joint_state_broadcaster]: Configured and activated joint_state_broadcaster
+[INFO] [1745800102.012345678] [controller_manager]: Loading controller 'forward_position_controller' of type 'forward_command_controller/ForwardCommandController'
+[INFO] [1745800102.123456789] [spawner_forward_position_controller]: Loaded forward_position_controller
+[INFO] [1745800102.234567890] [controller_manager]: Configuring controller 'forward_position_controller'
+[INFO] [1745800102.345678901] [controller_manager]: Activating controller 'forward_position_controller'
+[INFO] [1745800102.456789012] [spawner_forward_position_controller]: Configured and activated forward_position_controller
+[INFO] [1745800102.567890123] [controller_manager]: activate_controllers for forward_position_controller: claiming interfaces j1/position
+[INFO] [1745800102.678901234] [controller_manager]: Successfully activated controller 'forward_position_controller'
+[INFO] [1745800103.000000000] [controller_manager]: update cycle: all controllers active, publish /joint_states at 100 Hz
+[INFO] [1745800103.010000000] [robot_state_publisher]: Received robot description, publishing joint states
+[INFO] [1745800103.020000000] [controller_manager]: All spawners completed. System ready.

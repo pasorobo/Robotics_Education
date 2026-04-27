@@ -20,7 +20,7 @@ date: 2026-04-27
 | Lab中の文書 | `README.md` (手順)、`HINTS.md` (任意)、`CHECKLIST.md` (合格条件、正本) | — |
 | Template | `<deliverable>_template.md` | `skill_baseline_sheet_template.md` |
 | Sandbox reference | `sandbox_reference/week<N>/lab<N>/` | `sandbox_reference/week1/lab1/` |
-| Branch (instructor) | `course/sp<N>-<topic>` | `course/sp1-week1-foundation` |
+| Branch (instructor) | `course/sp<N>-<topic>` | `course/sp1-foundation-week1` |
 | Branch (学習者向け推奨) | `learner/<name>/wk<N>-<topic>` | `learner/alice/wk1-tf-tree` |
 | Commit prefix | `feat:`, `docs:`, `chore:`, `lab:`, `tool:`, `resource:`, `fix:` | `lab: add turtlesim bag exercise` |
 
@@ -88,11 +88,11 @@ deliverables: []                   # lectureなら空、labなら成果物リス
 | `lab` | `course/week<N>/labs/lab<n>*/README.md` | **必須** (10キー) |
 | `template` | `course/week<N>/deliverables/*_template.md` | **必須** (10キー) |
 | `week` | `course/week<N>/README.md` | **必須** (10キー) |
-| `setup` | `course/00_setup/*.md` | **必須** (空配列許容) |
+| `setup` | `course/00_setup/*.md` | **必須** (10キー、配列フィールド (prerequisites / worldcpj_ct / references / deliverables) は空配列 `[]` 許容) |
 | `reference` | `sandbox_reference/**/*.md` | **必須** (10キー) |
-| `checklist` | `lab<n>*/CHECKLIST.md` | **任意** (Lab READMEを継承) |
-| `hints` | `lab<n>*/HINTS.md` | **任意** (Lab READMEを継承) |
-| `guide` | `README.md`, `CONTRIBUTING.md`, `docs/CONVENTIONS.md`, `docs/glossary.md`, `docs/references.md` | **任意** (慣習文書) |
+| `checklist` | `lab<n>*/CHECKLIST.md` | **任意** (省略可。check_structure.sh は CHECKLIST.md / HINTS.md の front matter を検証対象としない。文脈情報は同 lab フォルダの README.md (front matter 必須) から人間が読み取る) |
+| `hints` | `lab<n>*/HINTS.md` | **任意** (省略可。check_structure.sh は CHECKLIST.md / HINTS.md の front matter を検証対象としない。文脈情報は同 lab フォルダの README.md (front matter 必須) から人間が読み取る) |
+| `guide` | `README.md`, `CONTRIBUTING.md`, `docs/CONVENTIONS.md`, `docs/glossary.md`, `docs/references.md` | **任意** (慣習文書。10キー不要、4キー (type/id/title/date) のみで運用) |
 | `spec` | `docs/superpowers/specs/*.md` | **専用 front matter** (course 10キー対象外) |
 | `plan` | `docs/superpowers/plans/*.md` | **専用 front matter** (course 10キー対象外) |
 
@@ -116,7 +116,7 @@ deliverables: []                   # lectureなら空、labなら成果物リス
 
 ### 3.1 .gitignore (root)
 
-リポジトリ root の `.gitignore` は以下を含む。内容は Task 1 で作成したものと完全一致する。
+リポジトリ root の `.gitignore` は以下を含む。以下のエントリはすべて必須。リポジトリ root の `.gitignore` と byte 単位で一致させること。
 
 ```gitignore
 # ROS2 build artifacts at repo root
@@ -180,6 +180,8 @@ __pycache__/
 ---
 
 ## 5. ドキュメント分離 (glossary vs references)
+
+> 本セクションが指す `glossary.md` と `references.md` は SP1 後続タスク (Task 3, 4) で作成される。
 
 | ファイル | 責務 | 収録内容 |
 |---|---|---|

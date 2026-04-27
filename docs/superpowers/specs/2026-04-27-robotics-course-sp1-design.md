@@ -1,9 +1,9 @@
 ---
-type: guide
+type: spec
 id: SPEC-SP1
 title: Robotics Education Course - Sub-Project 1 (Foundation + Week 1) 設計書
 date: 2026-04-27
-status: approved
+status: pending_user_review
 sub_project: SP1
 related_plan: docs/Robotics_simulation_phase0_education_plan.md
 ---
@@ -112,8 +112,8 @@ Robotics_Education/
 
 ```yaml
 ---
-type: lecture | lab | template | reference | week | setup | guide | checklist | hints
-id: W1-L1                          # W<week>-{L<n>|Lab<n>[a-z]?|T-<short>}
+type: lecture | lab | template | reference | week | setup | guide | checklist | hints | spec | plan
+id: W1-L1                          # W<week>-{L<n>|Lab<n>[a-z]?|T-<short>} | SPEC-<id> | PLAN-<id>
 title: ROS2 基礎 (node/topic/service/action/launch)
 week: 1
 duration_min: 45
@@ -138,6 +138,8 @@ deliverables: []                   # lectureなら空、labなら成果物リス
 | `checklist` | `lab<n>*/CHECKLIST.md` | **任意** (Lab READMEを継承) |
 | `hints` | `lab<n>*/HINTS.md` | **任意** (Lab READMEを継承) |
 | `guide` | root `README.md`, `CONTRIBUTING.md`, `docs/CONVENTIONS.md`, `docs/glossary.md`, `docs/references.md` | **任意** (慣習文書) |
+| `spec` | `docs/superpowers/specs/*.md` | **必須** (拡張キー: `status` (`draft`/`pending_user_review`/`approved`/`superseded`)、`sub_project`、`related_plan`)。`prerequisites`/`worldcpj_ct`/`roles`/`references`/`deliverables` は空配列許容 |
+| `plan` | `docs/superpowers/plans/*.md` | **必須** (拡張キー: `status`、`sub_project`、`related_spec`)。同上、空配列許容 |
 
 ### 2.3 Lab成果物のGit管理ルール
 
@@ -703,6 +705,6 @@ SP1スコープ外で、SP2以降で扱う:
 | ロール | 承認 | 日付 |
 |---|---|---|
 | Brainstorming session | 全5セクション + 全findings 反映 | 2026-04-27 |
-| ユーザー最終レビュー | (本spec commit後に依頼) | TBD |
+| ユーザー最終レビュー | 未承認 (本spec commit後に依頼予定。承認時に `status: approved` へ更新) | 未確定 |
 
 承認後、`writing-plans` skill で `docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md` を生成する。

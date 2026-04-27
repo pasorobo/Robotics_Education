@@ -5,7 +5,7 @@ title: Robotics Education Course - Sub-Project 1 (Foundation + Week 1) 設計書
 date: 2026-04-27
 status: pending_user_review
 sub_project: SP1
-related_plan: docs/Robotics_simulation_phase0_education_plan.md
+related_plan: docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md
 ---
 
 # Robotics Education Course — SP1 設計書
@@ -138,8 +138,8 @@ deliverables: []                   # lectureなら空、labなら成果物リス
 | `checklist` | `lab<n>*/CHECKLIST.md` | **任意** (Lab READMEを継承) |
 | `hints` | `lab<n>*/HINTS.md` | **任意** (Lab READMEを継承) |
 | `guide` | root `README.md`, `CONTRIBUTING.md`, `docs/CONVENTIONS.md`, `docs/glossary.md`, `docs/references.md` | **任意** (慣習文書) |
-| `spec` | `docs/superpowers/specs/*.md` | **必須** (拡張キー: `status` (`draft`/`pending_user_review`/`approved`/`superseded`)、`sub_project`、`related_plan`)。`prerequisites`/`worldcpj_ct`/`roles`/`references`/`deliverables` は空配列許容 |
-| `plan` | `docs/superpowers/plans/*.md` | **必須** (拡張キー: `status`、`sub_project`、`related_spec`)。同上、空配列許容 |
+| `spec` | `docs/superpowers/specs/*.md` | **専用 front matter** (course 10キー対象外)。必須キー: `type`, `id`, `title`, `date`, `status` (`draft`/`pending_user_review`/`approved`/`superseded`), `sub_project`, `related_plan` (生成予定の implementation plan へのパス。plan未生成時もパス予定値を記載) |
+| `plan` | `docs/superpowers/plans/*.md` | **専用 front matter** (course 10キー対象外)。必須キー: `type`, `id`, `title`, `date`, `status`, `sub_project`, `related_spec` (派生元specへのパス) |
 
 ### 2.3 Lab成果物のGit管理ルール
 
@@ -548,7 +548,7 @@ SP4完了時点で揃うもの:
 | ゲート | 判定対象 | 判定方法 | 失敗時の対応 |
 |---|---|---|---|
 | **G1: 構造ゲート** | 42ファイルすべて存在し、§2命名規約に準拠 | `tools/check_structure.sh` で全ファイル存在確認 + 命名規約lint | 不足ファイル追加、命名修正 |
-| **G2: 内容整合ゲート** | front matter (10キー) がtype別必須/任意通り、`prerequisites` / `references` / `worldcpj_ct` の参照先が実在 | 同lintスクリプトで参照解決チェック | 不存在ID修正、front matter補完 |
+| **G2: 内容整合ゲート** | front matter が type別必須/任意通り (course文書は10キー、`spec`/`plan` は専用7キー、`checklist`/`hints`/`guide` は任意)、`prerequisites` / `references` / `worldcpj_ct` の参照先が実在 | 同lintスクリプトで参照解決チェック | 不存在ID修正、front matter補完 |
 | **G3: 環境ゲート** | `bash tools/verify_env.sh` がinstructor環境 (Ubuntu 22.04 + Humble + Fortress + MoveIt2 + Git) でPASS | 実環境で実行 | OS/パッケージ追加 |
 | **G4: 走破ゲート** | W1全Labをinstructor自身が手順通り実行し、`sandbox_reference/week1/` に**期待ファイルが存在し、非空で、最低限の内容パターンを含む** | `tools/check_structure.sh` で内容パターンマッチ | 手順誤り修正、HINTSへ追記 |
 | **G5a: ローカルリンク** | 全mdの相対パス参照、anchor link、`./` `../` 参照先がリポジトリ内に実在 | `tools/check_structure.sh` 内でlocal link解決 | リンク修正、参照先文書補完 |

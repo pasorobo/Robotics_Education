@@ -1,0 +1,25 @@
+# ROS2 build artifacts at repo root
+/build/
+/install/
+/log/
+
+# rosbag2 / mcap bodies are not committed
+*.db3
+*.db3-journal
+*.mcap
+**/rosbag2_*/
+
+# Lab 2 local-only artifacts (view_frames output)
+**/frames.pdf
+**/frames.gv
+**/frames.png
+
+# Python / IDE
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# Large media
+*.mp4
+*.mov

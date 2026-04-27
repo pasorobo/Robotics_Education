@@ -148,9 +148,16 @@ wc -l tools/check_structure.sh
 ```
 Expected: ~330 行 (SP2 baseline)。
 
-- [ ] **Step 2: Add 28 W3 entries to EXPECTED_FILES**
+- [ ] **Step 2: Normalize SP1 baseline (add SP2 spec to EXPECTED_FILES) + Add 28 W3 entries**
 
-Find `EXPECTED_FILES=(`. After the W2 block (last entry `sandbox_reference/week2/lab4b/codex_prompt_lab4b.md` 等), append:
+Find `EXPECTED_FILES=(`. **First, add SP2 spec** (currently missing, similar to SP1 fix I-5 normalization) so base count becomes 71 instead of 70. After the SP1 spec entry, add:
+
+```bash
+    # === SP2 spec normalization (was missing in SP1 baseline、71件 baseline 確立) ===
+    "docs/superpowers/specs/2026-04-27-robotics-course-sp2-design.md"
+```
+
+Then, after the W2 block (last entry `sandbox_reference/week2/lab4b/codex_prompt_lab4b.md` 等), append:
 
 ```bash
     # === SP3 / Week 3 (28 files) ===
@@ -218,6 +225,25 @@ Find `COURSE_TEN_KEY_FILES=(`. Append:
 ```
 
 (`bridge_config.yaml`, `bridge_run.log`, `bridge_topic_list.txt`, `example_scene_packet.json`, `bridge_stub.py`, `execution_log.txt` は front matter なし type で除外)
+
+- [ ] **Step 3.5: Expand SPEC_FILES + PLAN_FILES to include SP2/SP3 (7-key 検査対象拡張)**
+
+Find existing `SPEC_FILES=(` and `PLAN_FILES=(` arrays (currently SP1 only — SP2 spec/plan + SP3 spec/plan が 7-key 検査対象から漏れている)。Replace with:
+
+```bash
+SPEC_FILES=(
+    "docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md"
+    "docs/superpowers/specs/2026-04-27-robotics-course-sp2-design.md"
+    "docs/superpowers/specs/2026-04-28-robotics-course-sp3-design.md"
+)
+PLAN_FILES=(
+    "docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md"
+    "docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md"
+    "docs/superpowers/plans/2026-04-28-robotics-course-sp3-plan.md"
+)
+```
+
+これにより SP1+SP2+SP3 の spec (3 件) + plan (3 件) すべてが 7-key front matter 検査対象になる。
 
 - [ ] **Step 4: Add `check_python_syntax` helper function**
 
@@ -343,13 +369,13 @@ bash -n tools/check_structure.sh && echo "syntax OK"
 bash tools/check_structure.sh; echo "exit=$?"
 ```
 
-Expected: `syntax OK`。run shows many `[FAIL] missing: ...` lines for W3 files (~26 missing 想定: 28 W3 files - 2 already exist (本spec + 本plan)) + corresponding G4 helper warns。Exit code 1。**Intentional** — these will resolve as T4-T14 add the files.
+Expected: `syntax OK`。run shows many `[FAIL] missing: ...` lines for W3 files (**~27 missing 想定**: 28 W3 files - 1 already exists (本spec)。本 plan は EXPECTED_FILES に追加されるが、本 plan ファイル自体が既に存在する。SP2 spec 正規化は existing なので missing にならない) + corresponding G4 helper warns。Exit code 1。**Intentional** — these will resolve as T4-T14 add the files.
 
 `grep -c "missing:"` 検査:
 ```bash
 bash tools/check_structure.sh 2>&1 | grep -c "missing:"
 ```
-Expected: ~26 W3 missing files。
+Expected: **~27 W3 missing files** (SP2 spec 正規化済 baseline + W3 未作成 28 - W3 spec 既存 1 = 27)。
 
 - [ ] **Step 8: Commit**
 
@@ -374,7 +400,7 @@ Changes:
 - Add Python syntax check loop on sandbox_reference/**/*.py covering
   W2 noop_logger.py (回帰防止) + W3 bridge_stub.py.
 
-Currently fails with ~26 missing files + ~30 G4 WARN-on-missing.
+Currently fails with ~27 missing files + ~30 G4 WARN-on-missing.
 Expected behavior; will pass at Task 15 after T4-T14 fill in W3.
 EOF
 )"
@@ -436,7 +462,7 @@ If sudo unavailable / install failed:
 bash tools/check_structure.sh 2>&1 | grep -c "missing:" || true
 ```
 
-Expected: ~26 (the 28 W3 files added in T2 don't exist yet, minus 2 already-present spec + plan)。
+Expected: **~27** (the 28 W3 files added in T2 don't exist yet, minus 1 already-present spec; the plan file itself exists too)。
 
 - [ ] **Step 6: No commit needed (system-level setup)**
 
@@ -566,7 +592,7 @@ Expected: 75-90 行、no MISSING lines。
 bash tools/check_structure.sh 2>&1 | grep -c "missing:"
 ```
 
-Expected: drops from 26 to 25。
+Expected: **drops from 27 to 26** (week3/README.md created)。
 
 - [ ] **Step 5: Commit**
 
@@ -1985,16 +2011,26 @@ YAML_EOF
 
 - [ ] **Step 3: REAL run path (if gz/ign + ros_gz_bridge available)**
 
+**重要**: `GZ_PID=$!` を `if`/`elif` 各 branch 内で確保 (古い background PID を拾うリスク回避)。CLI 不在時は real-run block を完全に終了して Step 4 (hand-author) に進む。
+
 ```bash
-# command -v gz で分岐 (subshell PID 問題回避、spec section 4 改善案採用)
+# command -v gz で分岐 (subshell PID 問題回避、各 branch 内で GZ_PID 取得)
 if command -v gz >/dev/null 2>&1; then
     gz sim -r shapes.sdf > /tmp/gz_sim.log 2>&1 &
+    GZ_PID=$!
 elif command -v ign >/dev/null 2>&1; then
     ign gazebo -r shapes.sdf > /tmp/gz_sim.log 2>&1 &
+    GZ_PID=$!
 else
-    echo "no gazebo CLI"; GZ_PID=""
+    echo "no gazebo CLI; switching to HAND-AUTHOR route (Step 4)"
+    # REAL run block を完全に終了。後続コードは実行しない。
+    # script 内: return 0 (関数内) または exit 0 (top-level)
+    # 対話 shell: 以下の REAL run block (sleep〜cleanup) をスキップして Step 4 へ
+    # 例: { sleep; bridge launch; cleanup; } を関数化して上記 if/elif 内でのみ呼ぶ形にできる
+    return 0 2>/dev/null || true
 fi
-GZ_PID=$!
+
+# (REAL run path: GZ_PID は必ず set されている前提で進む)
 sleep 5
 
 # ros_gz_bridge を /clock 1 topic で起動 (wrapper logging で確実な log)
@@ -2013,14 +2049,14 @@ ros2 topic list | tee sandbox_reference/week3/lab5/bridge_topic_list.txt
 timeout 5s ros2 topic echo /clock --once \
     >> sandbox_reference/week3/lab5/bridge_topic_list.txt 2>&1 || true
 
-# Cleanup
+# Cleanup (GZ_PID は real-run path のみで set されている、不在時に kill しない)
 kill "$BRIDGE_PID" 2>/dev/null || true
 wait "$BRIDGE_PID" 2>/dev/null || true
 [[ -n "${GZ_PID:-}" ]] && kill "$GZ_PID" 2>/dev/null || true
 [[ -n "${GZ_PID:-}" ]] && wait "$GZ_PID" 2>/dev/null || true
 ```
 
-- [ ] **Step 4: HAND-AUTHOR path (if no Gazebo / ros_gz_bridge install)**
+- [ ] **Step 4: HAND-AUTHOR path (if no Gazebo / ros_gz_bridge install — Step 3 の else branch から自然に到達)**
 
 ```bash
 # bridge_run.log: 仕様準拠で hand-author (parameter_bridge 起動時の期待出力)

@@ -8,6 +8,32 @@
 
 set -uo pipefail
 
+# --- Argument parsing (SP2 added) ---
+WEEK_MODE="default"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --week)
+            shift
+            WEEK_MODE="${1:-default}"
+            shift
+            ;;
+        --help|-h)
+            cat <<'EOH'
+Usage: verify_env.sh [--week N]
+  (no arg)   : SP1-compatible mode (Gazebo required, MoveIt 2 WARN if absent)
+  --week 2   : SP2 mode (MoveIt 2 + ros2_control + ros2_controllers + colcon required, Gazebo SKIP)
+  --week N   : reserved for future SP3+ modes
+EOH
+            exit 0
+            ;;
+        *)
+            echo "Unknown argument: $1" >&2
+            echo "Run 'verify_env.sh --help' for usage" >&2
+            exit 2
+            ;;
+    esac
+done
+
 PASS=0
 FAIL=0
 WARN=0
@@ -69,15 +95,28 @@ check_required "ros2 CLI"      command -v ros2
 check_required "ros2 Humble"   bash -c 'ros2 --help 2>&1 | grep -qi humble || [ -d /opt/ros/humble ]'
 
 echo "[Gazebo (Fortress)]"
-check_either "gazebo CLI" gz ign
+if [[ "$WEEK_MODE" == "2" ]]; then
+    print_check "gazebo CLI (week 2 mode)" "SKIP" "(SP3 で復活予定)"
+else
+    check_either "gazebo CLI" gz ign
+fi
 
 echo "[MoveIt 2]"
-if dpkg -l 2>/dev/null | grep -q "ros-humble-moveit "; then
-    print_check "ros-humble-moveit pkg" "PASS"
-    PASS=$((PASS+1))
+if [[ "$WEEK_MODE" == "2" ]]; then
+    check_required "ros-humble-moveit pkg" bash -c 'dpkg -l | grep -q "ros-humble-moveit "'
+    check_required "ros-humble-moveit-resources-panda-moveit-config pkg" \
+        bash -c 'dpkg -l | grep -q "ros-humble-moveit-resources-panda-moveit-config "'
+    check_required "ros-humble-ros2-control pkg" bash -c 'dpkg -l | grep -q "ros-humble-ros2-control "'
+    check_required "ros-humble-ros2-controllers pkg" bash -c 'dpkg -l | grep -q "ros-humble-ros2-controllers "'
+    check_required "colcon CLI" command -v colcon
 else
-    print_check "ros-humble-moveit pkg" "WARN" "(SP1 only needs demo install; SP2 requires full)"
-    WARN=$((WARN+1))
+    if dpkg -l 2>/dev/null | grep -q "ros-humble-moveit "; then
+        print_check "ros-humble-moveit pkg" "PASS"
+        PASS=$((PASS+1))
+    else
+        print_check "ros-humble-moveit pkg" "WARN" "(SP1 only needs demo install; SP2 requires full)"
+        WARN=$((WARN+1))
+    fi
 fi
 
 echo "[Tooling]"

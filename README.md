@@ -13,10 +13,17 @@ date: 2026-04-27
 
 ```
 Robotics_Education/
-├── docs/               # 教育計画、仕様書、規約、用語集、参考文献一覧
+├── docs/
+│   ├── Robotics_simulation_phase0_education_plan.md   # 原典
+│   ├── CONVENTIONS.md                                 # ドキュメント規約
+│   ├── glossary.md                                    # 用語表
+│   ├── references.md                                  # リソース台帳
+│   └── superpowers/
+│       ├── specs/                                     # brainstorming 設計書
+│       └── plans/                                     # 実装計画
 ├── course/             # 週別講義ノートと Lab 演習（00_setup + week1〜week4）
 ├── sandbox_reference/  # 模擬データ・オフライン参考資料（秘密情報禁止、実機接続禁止）
-└── tools/              # ビルド補助スクリプト、lint、チェックツール
+└── tools/              # 環境チェック・雛形生成・構造チェックスクリプト
 ```
 
 ## はじめての方へ
@@ -32,10 +39,10 @@ Robotics_Education/
 
 SP1（スプリント1）で整備されたコンテンツの概要です。
 
-- **Week 1 講義ノート（Lecture）:** 9本中3本（L01 ROS2概論、L02 ノード・トピック・サービス、L03 Gazebo基礎）
-- **Week 1 Lab 演習:** 12本中3本（Lab1 環境確認、Lab2 tf2 view_frames、Lab3 Gazebo起動確認）
+- **Week 1 講義ノート（Lecture）:** Lecture 9本中3本: L0 Git/Codex/Sandbox 最小語彙、L1 ROS 2 基礎、L2 TF/URDF
+- **Week 1 Lab 演習:** Lab 12本中3本: Lab 0 Sandbox Setup + Codex 接続確認、Lab 1 turtlesim + rosbag2、Lab 2 TF tree
 - **テンプレート:** 2本（講義ノートテンプレート、Lab演習テンプレート）
-- **ツール:** 4本（lint スクリプト、フロントマター検証、リンクチェック、ビルド補助）
+- **ツール:** tools 4本: verify_env.sh (環境チェック)、new_week_skeleton.sh (次週フォルダ雛形)、codex_prompt_template.md (Codex prompt前5項目)、check_structure.sh (SP1完了判定G1/G2/G4自動化)
 - **リファレンス:** R-01〜R-39（ROS2公式ドキュメント、Gazebo、Nav2、外部チュートリアルなど）
 
 ## 今後の予定

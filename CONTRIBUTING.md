@@ -18,7 +18,7 @@ date: 2026-04-27
 | インストラクター | `course/sp<N>-<topic>` | `course/sp1-foundation-week1` |
 | 学習者 | `learner/<name>/wk<N>-<topic>` | `learner/taro/wk1-ros2-basics` |
 
-## Commit prefix
+## コミット prefix
 
 コミットメッセージには以下のプレフィックスを使用します（仕様書 §2.1 参照）。
 
@@ -66,8 +66,10 @@ PR 説明には最低限以下を含めてください。
 
 Codex の利用は週によって段階的に拡大します（仕様書 §2.6 参照）。
 
-- **Week 1:** 接続確認・ルール理解・prompt 5項目練習のみ。本格的なコード生成には使用しない。
-- **Week 2 以降:** Lab 4b / 6b / 8b で本格運用開始。
+- **Week 1:** 接続確認 + ルール理解 + prompt前5項目練習のみ (生成必須化なし)
+- **Week 2:** Lab 4b で Codex 生成→PR→人間レビュー一巡 (必須)
+- **Week 3:** Lab 6b で bridge stub / schema mapping を Codex 支援で1PR (必須)
+- **Week 4:** Lab 8b で Codex 任せ範囲・人間判断・検証証跡を分離記録 (必須)
 
 ## レビュー観点
 

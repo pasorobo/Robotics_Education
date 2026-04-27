@@ -12,13 +12,13 @@ date: 2026-04-27
 ## ROS 2
 | 英 | 日本語の短い定義 |
 |---|---|
-| node | ROS 2 の最小実行単位。1プロセスが1つ以上のnodeを持つ |
-| topic | 非同期 pub/sub メッセージング |
-| service | 同期 request/response |
-| action | 長時間処理 + フィードバック |
-| launch | 複数ノード起動の宣言ファイル (Python/XML) |
+| `node` | ROS 2 の最小実行単位。1プロセスが1つ以上のnodeを持つ |
+| `topic` | 非同期 pub/sub メッセージング |
+| `service` | 同期 request/response |
+| `action` | 長時間処理 + フィードバック |
+| `launch` | 複数ノード起動の宣言ファイル (Python/XML) |
 | QoS | Quality of Service。reliability/durability/history |
-| TF | 座標変換ツリー。`tf2_ros` |
+| TF | 座標変換ツリー (`tf2_ros`) |
 | URDF | ロボット記述XML |
 | `robot_state_publisher` | URDF + joint state から TF を発行する標準ノード |
 | `rosbag2` | ROS 2 公式の記録/再生 |

@@ -25,9 +25,10 @@ deliverables: [sandbox_setup_log]
 
 1. **GitHub で repo 作成** — `Sandbox_<name>` (例: `Sandbox_alice`)、private、README のみで初期化する。
 
-2. **clone** — ローカルに clone する。
+2. **clone** — ローカルに clone し、作業ディレクトリへ移動する。以降の `git` コマンドはこのディレクトリで実行する。
    ```bash
    git clone git@github.com:<you>/Sandbox_<name>.git ~/Develop/Sandbox_<name>
+   cd ~/Develop/Sandbox_<name>
    ```
 
 3. **identity 設定** — Course 推奨: 仕事用 identity を per-repo で設定する。

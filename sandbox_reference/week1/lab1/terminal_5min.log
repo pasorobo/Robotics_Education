@@ -1,0 +1,166 @@
+Script started on 2026-04-27 20:06:03+09:00 [<not executed on terminal>]
+=== Lab 1 headless walk-through started at 2026年  4月 27日 月曜日 20:06:03 JST ===
+=== ROS 2 version ===
+
+=== ROS 2 humble environment info ===
+humble
+2
+
+=== Available packages check ===
+rosbag2
+rosbag2_compression
+rosbag2_compression_zstd
+rosbag2_cpp
+rosbag2_interfaces
+rosbag2_py
+rosbag2_storage
+rosbag2_storage_default_plugins
+rosbag2_transport
+turtlesim
+
+=== Starting bag record (20 second window) ===
+stdin is not a terminal device. Keyboard handling disabled.[0m[INFO] [1777287965.417684337] [rosbag2_recorder]: Press SPACE for pausing/resuming[0m
+[0m[INFO] [1777287965.421800172] [rosbag2_storage]: Opened database '/tmp/lab1/turtle_bag/turtle_bag_0.db3' for READ_WRITE.[0m
+[0m[INFO] [1777287965.428573030] [rosbag2_recorder]: Listening for topics...[0m
+[0m[INFO] [1777287965.428577858] [rosbag2_recorder]: Event publisher thread: Starting[0m
+[0m[INFO] [1777287965.429057123] [rosbag2_recorder]: Recording...[0m
+=== Publishing /turtle1/cmd_vel synthetically (~1 Hz for 15s) ===
+  [publish 1/15] at 20:06:06
+Waiting for at least 1 matching subscription(s)...
+[0m[INFO] [1777287967.899673548] [rosbag2_recorder]: Subscribed to topic '/turtle1/cmd_vel'[0m
+[0m[INFO] [1777287967.899753436] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...[0m
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 2/15] at 20:06:09
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 3/15] at 20:06:12
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 4/15] at 20:06:14
+Waiting for at least 1 matching subscription(s)...
+Waiting for at least 1 matching subscription(s)...
+Waiting for at least 1 matching subscription(s)...
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 5/15] at 20:06:19
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 6/15] at 20:06:21
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 7/15] at 20:06:24
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 8/15] at 20:06:27
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 9/15] at 20:06:29
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 10/15] at 20:06:32
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 11/15] at 20:06:34
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 12/15] at 20:06:37
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 13/15] at 20:06:39
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 14/15] at 20:06:42
+Waiting for at least 1 matching subscription(s)...
+Waiting for at least 1 matching subscription(s)...
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+  [publish 15/15] at 20:06:46
+Waiting for at least 1 matching subscription(s)...
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.5, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.3))
+
+=== Stopping bag record ===
+[0m[INFO] [1777288009.441406098] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while[0m
+[0m[INFO] [1777288009.442550016] [rosbag2_recorder]: Event publisher thread: Exiting[0m
+[0m[INFO] [1777288009.443198898] [rosbag2_recorder]: Recording stopped[0m
+=== Bag directory contents ===
+total 36
+drwxrwxr-x 2 dev dev  4096  4月 27 20:06 .
+drwxrwxr-x 3 dev dev  4096  4月 27 20:06 ..
+-rw-rw-r-- 1 dev dev   988  4月 27 20:06 metadata.yaml
+-rw-r--r-- 1 dev dev 24576  4月 27 20:06 turtle_bag_0.db3
+=== ros2 bag info output ===
+
+Files:             turtle_bag_0.db3
+Bag size:          25.0 KiB
+Storage id:        sqlite3
+Duration:          40.092906875s
+Start:             Apr 27 2026 20:06:07.991706694 (1777287967.991706694)
+End:               Apr 27 2026 20:06:48.084613569 (1777288008.084613569)
+Messages:          15
+Topic information: Topic: /turtle1/cmd_vel | Type: geometry_msgs/msg/Twist | Count: 15 | Serialization Format: cdr
+
+
+=== Capturing bag_info.txt and rosbag_metadata.yaml ===
+=== Files captured ===
+total 20
+drwxrwxr-x 2 dev dev 4096  4月 27 20:06 .
+drwxrwxr-x 4 dev dev 4096  4月 27 20:05 ..
+-rw-rw-r-- 1 dev dev  409  4月 27 20:06 bag_info.txt
+-rw-rw-r-- 1 dev dev  988  4月 27 20:06 rosbag_metadata.yaml
+-rw-rw-r-- 1 dev dev 4096  4月 27 20:06 terminal_5min.log
+=== Contents of bag_info.txt ===
+
+Files:             turtle_bag_0.db3
+Bag size:          25.0 KiB
+Storage id:        sqlite3
+Duration:          40.092906875s
+Start:             Apr 27 2026 20:06:07.991706694 (1777287967.991706694)
+End:               Apr 27 2026 20:06:48.084613569 (1777288008.084613569)
+Messages:          15
+Topic information: Topic: /turtle1/cmd_vel | Type: geometry_msgs/msg/Twist | Count: 15 | Serialization Format: cdr
+
+=== Contents of rosbag_metadata.yaml (first 30 lines) ===
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 40092906875
+  starting_time:
+    nanoseconds_since_epoch: 1777287967991706694
+  message_count: 15
+  topics_with_message_count:
+    - topic_metadata:
+        name: /turtle1/cmd_vel
+        type: geometry_msgs/msg/Twist
+        serialization_format: cdr
+        offered_qos_profiles: "- history: 3\n  depth: 0\n  reliability: 1\n  durability: 1\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false"
+      message_count: 15
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - turtle_bag_0.db3
+  files:
+    - path: turtle_bag_0.db3
+      starting_time:
+        nanoseconds_since_epoch: 1777287967991706694
+      duration:
+        nanoseconds: 40092906875
+      message_count: 15=== Lab 1 walk-through complete at 2026年  4月 27日 月曜日 20:06:52 JST ===
+
+Script done on 2026-04-27 20:06:52+09:00 [COMMAND_EXIT_CODE="0"]

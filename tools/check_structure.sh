@@ -54,6 +54,7 @@ EXPECTED_FILES=(
     "sandbox_reference/week1/lab1/bag_info.txt"
     "sandbox_reference/week1/lab1/rosbag_metadata.yaml"
     "sandbox_reference/week1/lab1/terminal_5min.log"
+    "sandbox_reference/week1/lab1/README.md"
     "sandbox_reference/week1/lab2/frame_inventory.md"
     "tools/verify_env.sh"
     "tools/new_week_skeleton.sh"
@@ -62,6 +63,34 @@ EXPECTED_FILES=(
     "docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md"
     "docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md"
     "sandbox_reference/week1/lab0/README.md"
+    # === SP2 / Week 2 (27 files) ===
+    "course/week2/README.md"
+    "course/week2/lectures/l3_moveit2_overview.md"
+    "course/week2/lectures/l4_robot_adapter_calibration_safety.md"
+    "course/week2/labs/lab3_rviz_planning/README.md"
+    "course/week2/labs/lab3_rviz_planning/CHECKLIST.md"
+    "course/week2/labs/lab3_rviz_planning/HINTS.md"
+    "course/week2/labs/lab4_mock_hardware_adapter/README.md"
+    "course/week2/labs/lab4_mock_hardware_adapter/CHECKLIST.md"
+    "course/week2/labs/lab4_mock_hardware_adapter/HINTS.md"
+    "course/week2/labs/lab4b_codex_noop_adapter_logger/README.md"
+    "course/week2/labs/lab4b_codex_noop_adapter_logger/CHECKLIST.md"
+    "course/week2/labs/lab4b_codex_noop_adapter_logger/HINTS.md"
+    "course/week2/deliverables/robot_readiness_mini_report_template.md"
+    "course/week2/deliverables/sandbox_pr_review_notes_template.md"
+    "sandbox_reference/week2/robot_readiness_mini_report_example.md"
+    "sandbox_reference/week2/sandbox_pr_review_notes_example.md"
+    "sandbox_reference/week2/lab3/README.md"
+    "sandbox_reference/week2/lab3/planning_evidence.md"
+    "sandbox_reference/week2/lab4/README.md"
+    "sandbox_reference/week2/lab4/controller_spawn.log"
+    "sandbox_reference/week2/lab4/controllers_list.txt"
+    "sandbox_reference/week2/lab4/joint_states_echo.log"
+    "sandbox_reference/week2/lab4b/README.md"
+    "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md"
+    "sandbox_reference/week2/lab4b/noop_logger.py"
+    "sandbox_reference/week2/lab4b/execution_log.txt"
+    "docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md"
 )
 
 for f in "${EXPECTED_FILES[@]}"; do
@@ -95,6 +124,22 @@ COURSE_TEN_KEY_FILES=(
     "sandbox_reference/week1/lab0/README.md"
     "sandbox_reference/week1/lab0/codex_connection_check.md"
     "sandbox_reference/week1/lab2/frame_inventory.md"
+    # === SP2 / Week 2 (10-key required: lecture/lab/template/week/reference) ===
+    "course/week2/README.md"
+    "course/week2/lectures/l3_moveit2_overview.md"
+    "course/week2/lectures/l4_robot_adapter_calibration_safety.md"
+    "course/week2/labs/lab3_rviz_planning/README.md"
+    "course/week2/labs/lab4_mock_hardware_adapter/README.md"
+    "course/week2/labs/lab4b_codex_noop_adapter_logger/README.md"
+    "course/week2/deliverables/robot_readiness_mini_report_template.md"
+    "course/week2/deliverables/sandbox_pr_review_notes_template.md"
+    "sandbox_reference/week2/robot_readiness_mini_report_example.md"
+    "sandbox_reference/week2/sandbox_pr_review_notes_example.md"
+    "sandbox_reference/week2/lab3/README.md"
+    "sandbox_reference/week2/lab3/planning_evidence.md"
+    "sandbox_reference/week2/lab4/README.md"
+    "sandbox_reference/week2/lab4b/README.md"
+    "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md"
 )
 
 REQUIRED_KEYS=(type id title week duration_min prerequisites worldcpj_ct roles references deliverables)
@@ -109,7 +154,7 @@ for f in "${COURSE_TEN_KEY_FILES[@]}"; do
     fm=$(awk '/^---$/{c++; if(c==2)exit; next} c==1' "$f")
     missing_keys=()
     for k in "${REQUIRED_KEYS[@]}"; do
-        if ! echo "$fm" | grep -qE "^${k}:"; then
+        if ! grep -qE "^${k}:" <<< "$fm"; then
             missing_keys+=("$k")
         fi
     done
@@ -135,7 +180,7 @@ check_special_fm() {
     [[ -f "$f" ]] || return
     fm=$(awk '/^---$/{c++; if(c==2)exit; next} c==1' "$f")
     for k in "${keys[@]}"; do
-        if ! echo "$fm" | grep -qE "^${k}:"; then
+        if ! grep -qE "^${k}:" <<< "$fm"; then
             err "$f: missing key '$k'"
             return
         fi
@@ -145,6 +190,36 @@ check_special_fm() {
 
 for f in "${SPEC_FILES[@]}"; do check_special_fm "$f" "${SPEC_KEYS[@]}"; done
 for f in "${PLAN_FILES[@]}"; do check_special_fm "$f" "${PLAN_KEYS[@]}"; done
+
+check_pattern_must() {
+    local f="$1"
+    local pattern="$2"
+    local label="$3"
+    if [[ ! -f "$f" ]]; then
+        warn "missing for must-pattern check (covered by G1): $f"
+        return
+    fi
+    if grep -qE "$pattern" "$f"; then
+        ok
+    else
+        err "$f: must-pattern not found ($label): /$pattern/"
+    fi
+}
+
+check_pattern_must_not() {
+    local f="$1"
+    local pattern="$2"
+    local label="$3"
+    if [[ ! -f "$f" ]]; then
+        warn "missing for must-not-pattern check (covered by G1): $f"
+        return
+    fi
+    if grep -qE "$pattern" "$f"; then
+        err "$f: must-not-pattern matched ($label): /$pattern/"
+    else
+        ok
+    fi
+}
 
 # ---------- G4: Sandbox content patterns ----------
 echo
@@ -205,6 +280,54 @@ fi
 
 check_pattern "sandbox_reference/week1/sandbox_setup_log_example.md" "repo:" "repo: key"
 check_pattern "sandbox_reference/week1/sandbox_setup_log_example.md" "first branch:" "first branch: key"
+
+echo
+echo "==== G4 (W2): Lab 3 / 4 / 4b sandbox content patterns ===="
+
+# Lab 3 (3 patterns)
+check_pattern_must "sandbox_reference/week2/lab3/planning_evidence.md" '```mermaid' "mermaid fence"
+check_pattern_must "sandbox_reference/week2/lab3/planning_evidence.md" "[Pp]lan" "Plan言及"
+check_pattern_must "sandbox_reference/week2/lab3/planning_evidence.md" "[Ff]ail|FAIL|失敗" "Plan失敗例"
+
+# Lab 4 (4 patterns)
+check_pattern_must "sandbox_reference/week2/lab4/controller_spawn.log" "controller_manager" "ros2_control起動"
+check_pattern_must "sandbox_reference/week2/lab4/controllers_list.txt" "joint_state_broadcaster|forward_position_controller" "controller名"
+check_pattern_must "sandbox_reference/week2/lab4/controllers_list.txt" "active" "controller active 状態確認"
+check_pattern_must "sandbox_reference/week2/lab4/joint_states_echo.log" "position:|name:" "/joint_states 実受信"
+
+# Lab 4b (7 patterns)
+check_pattern_must "sandbox_reference/week2/lab4b/noop_logger.py" "rclpy" "rclpy import"
+check_pattern_must "sandbox_reference/week2/lab4b/noop_logger.py" "/joint_states" "joint_states subscribe"
+check_pattern_must_not "sandbox_reference/week2/lab4b/noop_logger.py" "KDL" "禁止: KDL実コード"
+check_pattern_must_not "sandbox_reference/week2/lab4b/noop_logger.py" "controller_manager" "禁止: controller_manager"
+check_pattern_must "sandbox_reference/week2/lab4b/execution_log.txt" "noop_logger" "noop_logger 起動確認"
+check_pattern_must "sandbox_reference/week2/lab4b/execution_log.txt" "recv name=|pos=" "joint_states 実受信証跡"
+check_min_size    "sandbox_reference/week2/lab4b/execution_log.txt" 200 "実行ログ最小サイズ 200 bytes"
+
+# codex_prompt_lab4b.md (6 patterns)
+check_pattern_must "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md" "目的" "prompt5項目: 目的"
+check_pattern_must "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md" "入力" "prompt5項目: 入力"
+check_pattern_must "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md" "制約" "prompt5項目: 制約"
+check_pattern_must "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md" "成功条件" "prompt5項目: 成功条件"
+check_pattern_must "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md" "検証コマンド" "prompt5項目: 検証コマンド"
+check_pattern_must "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md" "禁止" "禁止リスト言及"
+
+# Robot Readiness Mini Report example (7 patterns、行ごと個別)
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "robot_id" "robot_id 行"
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "adapter stage" "adapter stage 行"
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "ROS interface" "ROS interface 行"
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "calibration state" "calibration state 行"
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "safety state" "safety state 行"
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "logging state" "logging state 行"
+check_pattern_must "sandbox_reference/week2/robot_readiness_mini_report_example.md" "next gate" "next gate 行"
+
+# Sandbox PR Review Notes example (6 patterns、行ごと個別)
+check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "task split" "task split 行"
+check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "Codex prompt" "Codex prompt 行"
+check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "diff summary" "diff summary 行"
+check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "human review" "human review 行"
+check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "debug evidence" "debug evidence 行"
+check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "judgment boundary" "judgment boundary 行"
 
 # ---------- G5a: Local link resolution ----------
 echo

@@ -121,6 +121,6 @@ graph TD
 
 ## 参照
 
-- R-01: ROS 2 公式ドキュメント
-- R-03: REP-103 (Standard Units of Measure and Coordinate Conventions)
-- R-05: tf2 公式ドキュメント
+- R-01: ROS 2 Humble Documentation
+- R-03: ROS 2 Humble tf2 Tutorials
+- R-05: Modern Robotics, Lynch and Park

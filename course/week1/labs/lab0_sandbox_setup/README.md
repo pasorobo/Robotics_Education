@@ -57,7 +57,7 @@ deliverables: [sandbox_setup_log]
 
 9. **Codex 接続確認** — ChatGPT Enterprise → Codex を開き、自分の workspace と `Sandbox_<name>` への GitHub connector 接続を確認する。**コード生成は不要。接続確認のみで可。**
 
-10. **`sandbox_setup_log_template.md` を埋める** — `course/week1/deliverables/sandbox_setup_log_template.md` の各項目を埋めて Sandbox repo に commit/PR する。(テンプレートは Task 13 で作成。現時点では Task 13 完了後に記入してください。)
+10. **`sandbox_setup_log_template.md` を埋める** — テンプレート: [`../../deliverables/sandbox_setup_log_template.md`](../../deliverables/sandbox_setup_log_template.md) の各項目を埋めて Sandbox repo に commit/PR する。
 
 ## bag本体commit禁止注記
 
@@ -74,9 +74,9 @@ Lab 0 では bag ファイルを扱わない。ただし Lab 1/2 以降では `.
 
 ## 参照
 
-- R-33: GitHub Docs — Creating a repository
-- R-34: GitHub Docs — Cloning a repository
-- R-35: Git — git config
-- R-36: GitHub Docs — Creating a pull request
-- R-37: GitHub Docs — Reviewing a pull request
-- R-38: ChatGPT Enterprise — Codex workspace setup
+- R-33: Git Book
+- R-34: GitHub Docs: Working with forks
+- R-35: GitHub Docs: Fork a repository
+- R-36: Codex web docs
+- R-37: Using Codex with your ChatGPT plan
+- R-38: Codex Enterprise Admin Setup

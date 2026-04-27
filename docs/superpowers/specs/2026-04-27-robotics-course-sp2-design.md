@@ -3,7 +3,7 @@ type: spec
 id: SPEC-SP2
 title: Robotics Education Course - Sub-Project 2 (Week 2 Manipulation / Robot Adapter) 設計書
 date: 2026-04-27
-status: pending_user_review
+status: approved
 sub_project: SP2
 related_plan: docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md
 ---
@@ -789,6 +789,6 @@ SP2 スコープ外で、SP3 以降で扱う:
 | ロール | 承認 | 日付 |
 |---|---|---|
 | Brainstorming session | 全 5 セクション + 全 findings 反映 | 2026-04-27 |
-| ユーザー最終レビュー | 未承認 (本spec commit後に依頼予定。承認時に `status: approved` へ更新) | 未確定 |
+| ユーザー最終レビュー | 承認済 (`195689d` の 2 点修正適用後に最終 OK) | 2026-04-27 |
 
 承認後、`writing-plans` skill で `docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md` を生成する。

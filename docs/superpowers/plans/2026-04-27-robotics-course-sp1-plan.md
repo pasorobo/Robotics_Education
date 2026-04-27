@@ -12,7 +12,7 @@ related_spec: docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build SP1 (Repository Foundation + Week 1 教材) — 40 new files (2 already committed) totaling ~3,400 lines, satisfying 5 verification gates (G1–G5).
+**Goal:** Build SP1 (Repository Foundation + Week 1 教材) — final state 42 files, ~3,400 lines, satisfying 5 verification gates (G1–G5). At plan-write time 3 files already committed (the moved education plan, this spec, this plan); 39 files remain to be created by the implementation tasks below.
 
 **Architecture:** Mono-repo with `docs/` (spec/conventions/glossary/references), `course/` (教材本体), `sandbox_reference/` (instructor模範), `tools/` (verify/skeleton/check scripts). Documentation-heavy (markdown + bash scripts + Mermaid). No application code, no Docker, no CI in SP1.
 
@@ -24,7 +24,10 @@ related_spec: docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md
 - Repository initialized (`git init`, branch `main`)
 - Local git identity set: `pasorobo` / `goo.mail01@yahoo.com`
 - Original education plan moved to `docs/Robotics_simulation_phase0_education_plan.md` (commit `af9ac7e`)
-- Spec written and approved at `docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md` (commits `af9ac7e`, `1baabd8`, `3e8b09c`, `909baac`)
+- Spec written and approved at `docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md` (commits `af9ac7e` → `909baac`)
+- This implementation plan committed at `docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md` (commit `3435a81`)
+
+**Working branch:** Implementation should not be done directly on `main`. Before starting Task 1, create and switch to a working branch (e.g., `course/sp1-foundation-week1`) or a worktree. Merge to `main` only after Task 20 (all 5 gates PASS).
 
 **Total tasks:** 20
 
@@ -34,7 +37,8 @@ related_spec: docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md
 
 - **Each task ends with a commit.** Commit prefixes follow spec §2.1: `feat:`, `docs:`, `lab:`, `tool:`, `resource:`, `chore:`, `fix:`.
 - **Commit author/email** is set per-repo to `pasorobo` / `goo.mail01@yahoo.com`. Do not change.
-- **All commits include the trailer** `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>`.
+- **No Co-Authored-By trailer.** Do not add `Co-Authored-By:` lines or any reference to AI/coding agents in commit messages. The author identity is the human committer; commit bodies describe what changed and why, nothing else.
+- **G3 / G4 are environment-dependent gates.** Tasks 18 (Lab 1 ROS run) and 19 (Lab 2 TF/Mermaid) require Ubuntu 22.04 + ROS 2 Humble + (for Lab 1) turtlesim. If those are not available in the implementation environment, the file content can be hand-authored, but Task 20 must report **"教材生成は完了、実走ゲート未完了"** (materials produced, run gate incomplete) and explicitly list which artifacts are synthetic vs real-execution. SP1 closure can only be claimed if the artifacts come from a real run on the standard environment.
 - **Documentation files** must follow CONVENTIONS.md §2 (front matter, naming, etc.). When in conflict between this plan and CONVENTIONS.md, **CONVENTIONS.md wins** (since it's the runtime ruleset).
 - **For each new file**, the task provides: exact path, exact front matter, section structure, content invariants. Engineer fills in detailed prose following spec §3.1 骨子.
 - **Verification step** for documentation tasks: confirm file exists, front matter parses (10 keys for course docs, 7 for spec/plan, optional for guide/checklist/hints), local links resolve. After Task 8 (`tools/check_structure.sh` complete), use that script to verify.
@@ -147,8 +151,6 @@ feat: add repository foundation (gitignore, README, CONTRIBUTING)
 
 Spec §3.1 group A files #1-#3. Establishes top-level documentation
 entry point and contribution rules.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -239,8 +241,6 @@ docs: add docs/CONVENTIONS.md (course documentation rules)
 Spec §3.1 #5. The runtime ruleset for all course documents:
 naming, front matter, Codex integration, Mermaid, etc.
 All future course docs must comply.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -373,8 +373,6 @@ docs: add docs/glossary.md (英↔日 用語と短い定義)
 Spec §3.1 #6. Term index only; URLs go to references.md.
 Categories: ROS2 / Frames / MoveIt / Calibration / Safety /
 Git / Codex / WorldCPJ.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -475,8 +473,6 @@ Spec §3.1 #7. Single ledger of all external resources cited
 in lectures/labs. IDs match education plan §6. SP2-SP4 will
 reference these by ID in front matter; new resources from
 R-40+.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -587,8 +583,6 @@ tool: add tools/codex_prompt_template.md (prompt-5 template)
 Spec §3.1 #38. The 5-item template (purpose/input/constraints/
 success/verification) plus a worked example. Used by Lab 0
 (Week 1) for practice and by Lab 4b/6b/8b for real Codex use.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -703,8 +697,6 @@ tool: add tools/new_week_skeleton.sh (week scaffold)
 Spec §3.1 #37. Generates course/week<N>/{lectures,labs,
 deliverables,assets}/ + stub README.md with required front
 matter. Refuses to overwrite. Used at SP2/SP3/SP4 start.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -858,8 +850,6 @@ Spec §3.1 #36 / #12. Canonical implementation in tools/;
 wrapper in course/00_setup/ for student-facing path. Checks
 Ubuntu 22.04, ROS 2 Humble, gz/ign, MoveIt 2, git, python3.
 Gazebo cmd accepts either gz or ign (Fortress transition).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1201,8 +1191,6 @@ on all *.sh. Used as the gate before SP1 sign-off.
 
 Currently fails with many missing files — that is expected
 during incremental SP1 build; will pass at Task 19.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1322,8 +1310,6 @@ docs: add course/00_setup/ chapter (4 setup docs)
 Spec §3.1 #8-#11. Ubuntu 22.04 native install path for ROS 2
 Humble, Gazebo Fortress, and MoveIt 2 (demo only — full
 MoveIt setup is SP2). README links setup steps in order.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1436,8 +1422,6 @@ Spec §3.1 #13, #14. Week entry point + first lecture covering
 Git/GitHub minimal vocabulary, Sandbox principles, Codex
 positioning (W1 = connection + rules + prompt-5 practice only,
 no required code generation).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1535,8 +1519,6 @@ docs: add Week 1 Lectures L1 (ROS 2 basics) and L2 (TF/URDF)
 Spec §3.1 #15, #16. Core ROS 2 vocabulary (node/topic/service/
 action/launch/QoS) and frame fundamentals (TF, URDF,
 robot_state_publisher, base_link/camera_link/tool0).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1650,8 +1632,6 @@ Spec §3.1 #17-#19. First Lab: each learner creates their own
 Sandbox_<name> GitHub repo, walks through the first branch/
 commit/PR/review cycle, and confirms Codex workspace + GitHub
 connector. Codex code generation is NOT required in Week 1.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1762,8 +1742,6 @@ Spec §3.1 #20-#22. ROS 2 CLI hands-on: turtlesim, topic
 echo, rosbag2 record/play/info. Strict rule: only lightweight
 artifacts (bag_info.txt, rosbag_metadata.yaml, terminal_5min.log)
 go to Sandbox; bag bodies (.db3, rosbag2_*/) are gitignored.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -1890,8 +1868,6 @@ tf2_echo verification, view_frames for local visualization
 (PDF is gitignored), and Mermaid TF tree as the canonical
 deliverable. Must include base_link, camera_link, tool0
 keywords.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -2033,8 +2009,6 @@ Spec §3.1 #26-#27. Two empty templates for learners to copy
 into their Sandbox: Skill Baseline Sheet (8 self-assessment
 categories) and Sandbox Setup Log (repo URL, access, local
 setup, first branch, Codex access, rules).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -2214,8 +2188,6 @@ Spec §3.1 #28-#30. Instructor snapshot folder with disclaimer
 Baseline Sheet (all 8 categories) and Sandbox Setup Log
 (treats this Robotics_Education repo as the instructor's
 Sandbox example).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -2362,8 +2334,6 @@ Codex connection check log (with required workspace/connector
 keywords for G4 pattern). Acknowledges that the instructor
 uses this Robotics_Education repo as the Sandbox example
 rather than creating a separate Sandbox_<name>.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -2495,8 +2465,6 @@ G4 patterns satisfied: Duration/Topic in bag_info,
 topics_with_message_count in metadata, log >=1KB.
 
 The bag body itself is gitignored (.db3, rosbag2_*/).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -2612,8 +2580,6 @@ Spec §3.1 #35. Mermaid TF tree + frame detail table covering
 the CC/MS shared frame inventory draft. G4 patterns satisfied:
 mermaid code fence, base_link, camera_link, tool0 keywords.
 SP2 will reconcile this draft with actual UR7e/CRX URDFs.
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -2713,8 +2679,6 @@ G5b external links: see commit body for any unreachable URLs.
 
 42 files committed across ~20 commits. Ready for SP1 → SP2
 transition gate (spec §5.7).
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
 )"
 fi

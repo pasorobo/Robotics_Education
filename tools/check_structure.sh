@@ -90,7 +90,6 @@ COURSE_TEN_KEY_FILES=(
     "course/00_setup/ubuntu_2204_humble_setup.md"
     "course/00_setup/gazebo_fortress_setup.md"
     "course/00_setup/moveit2_humble_setup.md"
-    "sandbox_reference/README.md"
     "sandbox_reference/week1/skill_baseline_sheet_example.md"
     "sandbox_reference/week1/sandbox_setup_log_example.md"
     "sandbox_reference/week1/lab0/README.md"

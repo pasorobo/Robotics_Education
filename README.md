@@ -45,11 +45,26 @@ SP1（Sub-Project 1 / サブプロジェクト1）で整備されたコンテン
 - **ツール:** tools 4本: verify_env.sh (環境チェック)、new_week_skeleton.sh (次週フォルダ雛形)、codex_prompt_template.md (Codex prompt前5項目)、check_structure.sh (SP1完了判定G1/G2/G4自動化)
 - **リファレンス:** R-01〜R-39（ROS2公式ドキュメント、Gazebo、Nav2、外部チュートリアルなど）
 
+## SP2で何ができるか
+
+Week 2 教材一式 (3 本柱):
+
+- **MoveIt 2 Panda demo**: planning scene / IK / trajectory / collision-aware planning を RViz で体験 (Lab 3)
+- **mock_hardware adapter**: 最小 ROS package + colcon build + ros2_control の `mock_components/GenericSystem` で controller / hardware interface 境界を観察 (Lab 4)
+- **Codex no-op adapter logger**: Codex 生成 → PR → 人間レビュー一巡を初実走、禁止リスト遵守を人間が確認 (Lab 4b)
+
+提出物テンプレート 2 件:
+
+- Robot Readiness Mini Report (7 行必須記入、空欄 NG、mock 環境では「未確認 / SP4-5 で評価予定」可)
+- Sandbox PR Review Notes (6 行必須記入、Codex 利用なし時も明示記述)
+
+Stretch goal (Robot Adapter / Safety Role Owner 限定): URSim 接続、URDF + IK mock adapter (KDL ベース) は SP5 / 個別宿題で扱う。
+
 ## 今後の予定
 
 | サブプロジェクト | 対象週 | 主なコンテンツ |
 |------------------|--------|----------------|
-| SP2              | Week 2 | Manipulation / Robot Adapter（W2 L3-L4、Lab3、Lab4、Lab4b） |
+| SP2 | **完了 (Week 2 — Manipulation / Robot Adapter)** |
 | SP3              | Week 3 | Simulation Bridge（W3 L5-L6、Lab5、Lab6、Lab6b） |
 | SP4              | Week 4 | Logging / Evaluation / Safety + Q1統合（W4 L7-L8、Lab7、Lab8、Lab8b） |
 

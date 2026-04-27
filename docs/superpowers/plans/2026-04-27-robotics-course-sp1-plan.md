@@ -2057,7 +2057,7 @@ Body:
 
 - bag本体 (`.db3`, `.mcap`, `rosbag2_*/`) はここにも置きません。`.gitignore` で block 済。
 - 提出物は `bag_info.txt`, `rosbag_metadata.yaml`, `terminal_*.log`, `frame_inventory.md` などの軽量ファイルのみ。
-- 詳細は [CONVENTIONS.md §3](../docs/CONVENTIONS.md) 参照。
+- 詳細は [CONVENTIONS.md §3](../../CONVENTIONS.md) 参照。
 ```
 
 - [ ] **Step 2: Create `sandbox_reference/week1/skill_baseline_sheet_example.md`**

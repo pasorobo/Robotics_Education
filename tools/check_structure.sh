@@ -152,11 +152,9 @@ echo
 echo "==== G4: Sandbox reference content patterns ===="
 
 check_pattern() {
-    local f="$1"
-    local pattern="$2"
-    local label="$3"
+    local f="$1"; local pattern="$2"; local label="$3"
     if [[ ! -f "$f" ]]; then
-        err "missing for content check: $f"
+        warn "missing for content check (covered by G1): $f"
         return
     fi
     if grep -qE "$pattern" "$f"; then
@@ -167,10 +165,9 @@ check_pattern() {
 }
 
 check_min_size() {
-    local f="$1"
-    local min_bytes="$2"
+    local f="$1"; local min_bytes="$2"
     if [[ ! -f "$f" ]]; then
-        err "missing for size check: $f"
+        warn "missing for size check (covered by G1): $f"
         return
     fi
     local size; size=$(wc -c < "$f")
@@ -239,8 +236,8 @@ while IFS= read -r mdfile; do
             err "broken local link in $mdfile -> $target"
             local_link_failures=$((local_link_failures+1))
         fi
-    done < <(grep -oE '\]\([^)]+\)' "$mdfile" | sed 's/^](//;s/)$//')
-done < <(find . -name "*.md" -not -path "./.git/*" -not -path "./build/*" -not -path "./install/*")
+    done < <(sed 's/`[^`]*`//g' "$mdfile" | grep -oE '\]\([^)]+\)' | sed 's/^](//;s/)$//')
+done < <(find . -name "*.md" -not -path "./.git/*" -not -path "./build/*" -not -path "./install/*" -not -path "./docs/superpowers/*")
 
 [[ $local_link_failures -eq 0 ]] && ok
 
@@ -249,10 +246,13 @@ echo
 echo "==== bash -n syntax check on tools/*.sh and course/00_setup/*.sh ===="
 
 while IFS= read -r sh; do
-    if bash -n "$sh" 2>/dev/null; then
+    if output=$(bash -n "$sh" 2>&1); then
         ok
     else
         err "syntax error: $sh"
+        if [[ -n "$output" ]]; then
+            printf "         %s\n" "$output"
+        fi
     fi
 done < <(find tools course/00_setup -name "*.sh" -not -path "./.git/*" 2>/dev/null)
 

@@ -3,7 +3,7 @@ type: spec
 id: SPEC-SP1
 title: Robotics Education Course - Sub-Project 1 (Foundation + Week 1) 設計書
 date: 2026-04-27
-status: pending_user_review
+status: approved
 sub_project: SP1
 related_plan: docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md
 ---
@@ -705,6 +705,6 @@ SP1スコープ外で、SP2以降で扱う:
 | ロール | 承認 | 日付 |
 |---|---|---|
 | Brainstorming session | 全5セクション + 全findings 反映 | 2026-04-27 |
-| ユーザー最終レビュー | 未承認 (本spec commit後に依頼予定。承認時に `status: approved` へ更新) | 未確定 |
+| ユーザー最終レビュー | 承認済 (3e8b09c の3点修正適用後に最終OK) | 2026-04-27 |
 
 承認後、`writing-plans` skill で `docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md` を生成する。

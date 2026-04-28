@@ -9,7 +9,8 @@
 #
 # Reads JSON, logs each of the 4 input fields, exits 0.
 # Requires: Python 3.10+, stdlib only (json, sys, logging).
-# Prohibited imports: subprocess, os.system, KDL, controller_manager.
+# Prohibited content: see Lab 6b README + CHECKLIST 禁止リスト for the
+# 9 categories (forbidden by literal G4 must-not patterns).
 
 import json
 import logging

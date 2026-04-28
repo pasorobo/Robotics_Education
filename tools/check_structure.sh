@@ -294,6 +294,53 @@ check_python_syntax() {
     fi
 }
 
+# Strip Markdown inline code (`...`) and fenced code blocks (```...```) from a file.
+# Used by must-not patterns to avoid false positives where a forbidden literal is
+# only mentioned inside a code span as instructional reference.
+_strip_inline_code() {
+    local f="$1"
+    awk '
+        /^```/ { inblock = !inblock; next }
+        !inblock { gsub(/`[^`]*`/, ""); print }
+    ' "$f"
+}
+
+# Like check_pattern_must_not, but strips inline-code / fenced code blocks first.
+# Used for SP4 L8 lecture must-not patterns (e.g. "non-recoverable" used in code
+# fences for educational citation must not trigger; only prose mentions fail).
+check_pattern_must_not_strip() {
+    local f="$1"
+    local pattern="$2"
+    local label="$3"
+    if [[ ! -f "$f" ]]; then
+        warn "missing for must-not-strip-pattern check (covered by G1): $f"
+        return
+    fi
+    if _strip_inline_code "$f" | grep -qE "$pattern"; then
+        err "$f: must-not-pattern matched after stripping inline code ($label): /$pattern/"
+    else
+        ok
+    fi
+}
+
+# Negative-example must-pattern: same semantics as check_pattern_must, but the
+# label makes it explicit this is asserting a marker required ONLY in a
+# deliberately-invalid example file (e.g. bad_q1_package_example.md).
+check_pattern_negative_example() {
+    local f="$1"
+    local pattern="$2"
+    local label="$3"
+    if [[ ! -f "$f" ]]; then
+        warn "missing for negative-example check (covered by G1): $f"
+        return
+    fi
+    if grep -qE "$pattern" "$f"; then
+        ok
+    else
+        err "$f: negative-example marker not found ($label): /$pattern/"
+    fi
+}
+
 # ---------- G4: Sandbox content patterns ----------
 echo
 echo "==== G4: Sandbox reference content patterns ===="

@@ -1,0 +1,14 @@
+# /clock (mandatory) - gz transport の /clock を ROS 2 /clock topic に bridge
+- ros_topic_name: "/clock"
+  gz_topic_name: "/clock"
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "ignition.msgs.Clock"
+  direction: GZ_TO_ROS
+
+# /joint_states (Stretch、概念例) - joint を持つ robot model が必要
+# shapes.sdf にはロボット joint がないため real run には別 robot model 拡張が必要
+# - ros_topic_name: "/joint_states"
+#   gz_topic_name: "/world/default/model/<robot>/joint_state"
+#   ros_type_name: "sensor_msgs/msg/JointState"
+#   gz_type_name: "ignition.msgs.Model"
+#   direction: GZ_TO_ROS

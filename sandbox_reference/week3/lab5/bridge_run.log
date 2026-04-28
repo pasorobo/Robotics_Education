@@ -1,0 +1,6 @@
+starting parameter_bridge for /clock
+config: sandbox_reference/week3/lab5/bridge_config.yaml
+timestamp: 2026-04-28T00:32:18Z
+ros_gz_bridge version: 0.244.23
+---
+[INFO] [1777336341.282762715] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)

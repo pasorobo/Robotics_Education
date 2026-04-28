@@ -1,0 +1,13 @@
+/clock
+/parameter_events
+/rosout
+/speed_scaling_factor
+---
+# ros2 topic echo /clock --once (timeout 5s)
+A message was lost!!!
+	total count change:6
+	total count: 6---
+clock:
+  sec: 5
+  nanosec: 597000000
+---

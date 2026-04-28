@@ -63,6 +63,8 @@ EXPECTED_FILES=(
     "docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md"
     "docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md"
     "sandbox_reference/week1/lab0/README.md"
+    # === SP2 spec normalization (was missing in SP1 baseline、71件 baseline 確立) ===
+    "docs/superpowers/specs/2026-04-27-robotics-course-sp2-design.md"
     # === SP2 / Week 2 (27 files) ===
     "course/week2/README.md"
     "course/week2/lectures/l3_moveit2_overview.md"
@@ -91,6 +93,36 @@ EXPECTED_FILES=(
     "sandbox_reference/week2/lab4b/noop_logger.py"
     "sandbox_reference/week2/lab4b/execution_log.txt"
     "docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md"
+    # === SP3 / Week 3 (28 files) ===
+    "course/week3/README.md"
+    "course/week3/lectures/l5_gazebo_fortress_ros2_bridge.md"
+    "course/week3/lectures/l6_simulator_landscape.md"
+    "course/week3/labs/lab5_gazebo_topic_bridge/README.md"
+    "course/week3/labs/lab5_gazebo_topic_bridge/CHECKLIST.md"
+    "course/week3/labs/lab5_gazebo_topic_bridge/HINTS.md"
+    "course/week3/labs/lab6_sim_to_worldcpj_schema/README.md"
+    "course/week3/labs/lab6_sim_to_worldcpj_schema/CHECKLIST.md"
+    "course/week3/labs/lab6_sim_to_worldcpj_schema/HINTS.md"
+    "course/week3/labs/lab6b_codex_noop_bridge_stub/README.md"
+    "course/week3/labs/lab6b_codex_noop_bridge_stub/CHECKLIST.md"
+    "course/week3/labs/lab6b_codex_noop_bridge_stub/HINTS.md"
+    "course/week3/deliverables/simulation_bridge_draft_template.md"
+    "course/week3/deliverables/simulator_decision_table_template.md"
+    "sandbox_reference/week3/simulation_bridge_draft_example.md"
+    "sandbox_reference/week3/simulator_decision_table_example.md"
+    "sandbox_reference/week3/lab5/README.md"
+    "sandbox_reference/week3/lab5/bridge_config.yaml"
+    "sandbox_reference/week3/lab5/bridge_run.log"
+    "sandbox_reference/week3/lab5/bridge_topic_list.txt"
+    "sandbox_reference/week3/lab6/README.md"
+    "sandbox_reference/week3/lab6/scene_packet_design.md"
+    "sandbox_reference/week3/lab6b/README.md"
+    "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md"
+    "sandbox_reference/week3/lab6b/example_scene_packet.json"
+    "sandbox_reference/week3/lab6b/bridge_stub.py"
+    "sandbox_reference/week3/lab6b/execution_log.txt"
+    "docs/superpowers/specs/2026-04-28-robotics-course-sp3-design.md"
+    "docs/superpowers/plans/2026-04-28-robotics-course-sp3-plan.md"
 )
 
 for f in "${EXPECTED_FILES[@]}"; do
@@ -140,6 +172,22 @@ COURSE_TEN_KEY_FILES=(
     "sandbox_reference/week2/lab4/README.md"
     "sandbox_reference/week2/lab4b/README.md"
     "sandbox_reference/week2/lab4b/codex_prompt_lab4b.md"
+    # === SP3 / Week 3 (10-key required: lecture/lab/template/week/reference) ===
+    "course/week3/README.md"
+    "course/week3/lectures/l5_gazebo_fortress_ros2_bridge.md"
+    "course/week3/lectures/l6_simulator_landscape.md"
+    "course/week3/labs/lab5_gazebo_topic_bridge/README.md"
+    "course/week3/labs/lab6_sim_to_worldcpj_schema/README.md"
+    "course/week3/labs/lab6b_codex_noop_bridge_stub/README.md"
+    "course/week3/deliverables/simulation_bridge_draft_template.md"
+    "course/week3/deliverables/simulator_decision_table_template.md"
+    "sandbox_reference/week3/simulation_bridge_draft_example.md"
+    "sandbox_reference/week3/simulator_decision_table_example.md"
+    "sandbox_reference/week3/lab5/README.md"
+    "sandbox_reference/week3/lab6/README.md"
+    "sandbox_reference/week3/lab6/scene_packet_design.md"
+    "sandbox_reference/week3/lab6b/README.md"
+    "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md"
 )
 
 REQUIRED_KEYS=(type id title week duration_min prerequisites worldcpj_ct roles references deliverables)
@@ -169,8 +217,16 @@ done
 echo
 echo "==== G2: spec/plan front matter (7 keys) ===="
 
-SPEC_FILES=("docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md")
-PLAN_FILES=("docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md")
+SPEC_FILES=(
+    "docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md"
+    "docs/superpowers/specs/2026-04-27-robotics-course-sp2-design.md"
+    "docs/superpowers/specs/2026-04-28-robotics-course-sp3-design.md"
+)
+PLAN_FILES=(
+    "docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md"
+    "docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md"
+    "docs/superpowers/plans/2026-04-28-robotics-course-sp3-plan.md"
+)
 SPEC_KEYS=(type id title date status sub_project related_plan)
 PLAN_KEYS=(type id title date status sub_project related_spec)
 
@@ -218,6 +274,23 @@ check_pattern_must_not() {
         err "$f: must-not-pattern matched ($label): /$pattern/"
     else
         ok
+    fi
+}
+
+check_python_syntax() {
+    local f="$1"
+    local label="${2:-py_compile}"
+    if [[ ! -f "$f" ]]; then
+        warn "missing for python syntax check (covered by G1): $f"
+        return
+    fi
+    if python3 -m py_compile "$f" 2>/dev/null; then
+        ok
+    else
+        local error_msg
+        error_msg=$(python3 -m py_compile "$f" 2>&1)
+        err "Python syntax error: $f ($label)"
+        printf "         %s\n" "$error_msg"
     fi
 }
 
@@ -329,6 +402,80 @@ check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" 
 check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "debug evidence" "debug evidence 行"
 check_pattern_must "sandbox_reference/week2/sandbox_pr_review_notes_example.md" "judgment boundary" "judgment boundary 行"
 
+echo
+echo "==== G4 (W3): Lab 5 / 6 / 6b sandbox content patterns (53 件) ===="
+
+# === Lab 5 (6 patterns) ===
+check_pattern_must "sandbox_reference/week3/lab5/bridge_config.yaml" "ros_gz_bridge|ros_topic_name" "bridge YAML 構造"
+check_pattern_must "sandbox_reference/week3/lab5/bridge_config.yaml" "/clock" "/clock mandatory bridge"
+check_pattern_must "sandbox_reference/week3/lab5/bridge_config.yaml" "GZ_TO_ROS|direction" "bridge 方向指定"
+check_pattern_must "sandbox_reference/week3/lab5/bridge_run.log" "ros_gz_bridge|parameter_bridge" "ros_gz_bridge 起動"
+check_pattern_must "sandbox_reference/week3/lab5/bridge_run.log" "/clock" "/clock real run 証跡"
+check_pattern_must "sandbox_reference/week3/lab5/bridge_topic_list.txt" "/clock" "/clock ROS 2 側到達"
+
+# === Lab 6 (8 patterns、scene_packet_design.md 8 field 行ごと) ===
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "scene_packet" "scene_packet 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "robot_state" "robot_state 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "candidate_set" "candidate_set 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "action_intent" "action_intent 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "observation" "observation 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "execution_result" "execution_result 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "failure_reason" "failure_reason 行"
+check_pattern_must "sandbox_reference/week3/lab6/scene_packet_design.md" "metrics" "metrics 行"
+
+# === Lab 6b — example_scene_packet.json (4 patterns) ===
+check_pattern_must "sandbox_reference/week3/lab6b/example_scene_packet.json" "scene_packet" "input field 1"
+check_pattern_must "sandbox_reference/week3/lab6b/example_scene_packet.json" "robot_state" "input field 2"
+check_pattern_must "sandbox_reference/week3/lab6b/example_scene_packet.json" "candidate_set" "input field 3"
+check_pattern_must "sandbox_reference/week3/lab6b/example_scene_packet.json" "action_intent" "input field 4"
+
+# === Lab 6b — bridge_stub.py (6 patterns) ===
+check_pattern_must "sandbox_reference/week3/lab6b/bridge_stub.py" "json[.]load" "json.load (実コード)"
+check_pattern_must "sandbox_reference/week3/lab6b/bridge_stub.py" "recv field=" "出力フォーマット固定"
+check_pattern_must_not "sandbox_reference/week3/lab6b/bridge_stub.py" "subprocess" "禁止: subprocess"
+check_pattern_must_not "sandbox_reference/week3/lab6b/bridge_stub.py" "os[.]system" "禁止: os.system"
+check_pattern_must_not "sandbox_reference/week3/lab6b/bridge_stub.py" "KDL" "禁止: KDL"
+check_pattern_must_not "sandbox_reference/week3/lab6b/bridge_stub.py" "controller_manager" "禁止: controller_manager"
+
+# === Lab 6b — bridge_stub.py syntax (1 pattern、check_python_syntax helper) ===
+check_python_syntax "sandbox_reference/week3/lab6b/bridge_stub.py" "py_compile"
+
+# === Lab 6b — execution_log.txt (6 patterns、input 4 field 個別 + 起動 + min_size) ===
+check_pattern_must "sandbox_reference/week3/lab6b/execution_log.txt" "recv field=scene_packet" "input 1: scene_packet log"
+check_pattern_must "sandbox_reference/week3/lab6b/execution_log.txt" "recv field=robot_state" "input 2: robot_state log"
+check_pattern_must "sandbox_reference/week3/lab6b/execution_log.txt" "recv field=candidate_set" "input 3: candidate_set log"
+check_pattern_must "sandbox_reference/week3/lab6b/execution_log.txt" "recv field=action_intent" "input 4: action_intent log"
+check_pattern_must "sandbox_reference/week3/lab6b/execution_log.txt" "bridge_stub" "起動確認"
+check_min_size    "sandbox_reference/week3/lab6b/execution_log.txt" 200 "実行ログ最小サイズ"
+
+# === Lab 6b — codex_prompt_lab6b.md (6 patterns、Lab 4b 同型) ===
+check_pattern_must "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md" "目的" "prompt5項目: 目的"
+check_pattern_must "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md" "入力" "prompt5項目: 入力"
+check_pattern_must "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md" "制約" "prompt5項目: 制約"
+check_pattern_must "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md" "成功条件" "prompt5項目: 成功条件"
+check_pattern_must "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md" "検証コマンド" "prompt5項目: 検証コマンド"
+check_pattern_must "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md" "禁止" "禁止リスト言及"
+
+# === simulation_bridge_draft_example.md (8 patterns、8 field 行ごと) ===
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "scene_packet" "input field 1"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "robot_state" "input field 2"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "candidate_set" "input field 3"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "action_intent" "input field 4"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "observation" "output field 1"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "execution_result" "output field 2"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "failure_reason" "output field 3"
+check_pattern_must "sandbox_reference/week3/simulation_bridge_draft_example.md" "metrics" "output field 4"
+
+# === simulator_decision_table_example.md (8 patterns、4 simulator + 4 軸 行ごと) ===
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "Gazebo" "simulator 1: Gazebo"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "MuJoCo" "simulator 2: MuJoCo"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "ManiSkill" "simulator 3: ManiSkill"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "Isaac" "simulator 4: Isaac"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "rendering" "軸 1: rendering"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "contact" "軸 2: contact"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "parallel data" "軸 3: parallel data"
+check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "ROS 2 統合" "軸 4: ROS 2 統合"
+
 # ---------- G5a: Local link resolution ----------
 echo
 echo "==== G5a: Local link resolution ===="
@@ -377,6 +524,12 @@ while IFS= read -r sh; do
         fi
     fi
 done < <(find tools course/00_setup -name "*.sh" -not -path "./.git/*" 2>/dev/null)
+
+echo
+echo "==== Python syntax check on sandbox_reference/**/*.py (W2 + W3) ===="
+while IFS= read -r py; do
+    check_python_syntax "$py" "py_compile"
+done < <(find sandbox_reference -name "*.py" 2>/dev/null)
 
 # ---------- Summary ----------
 echo

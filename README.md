@@ -75,13 +75,31 @@ Week 3 教材一式 (3 本柱):
 
 Stretch goal (Sim Bridge / Sandbox Bridge Role Owner 限定): 実 ros_gz_bridge で SP2 minimal_robot を Gazebo 上で動かす統合、MuJoCo / ManiSkill / Isaac の hands-on は SP5 / 個別宿題で扱う。
 
+## SP4で何ができるか
+
+Week 4 教材一式 (Phase 0 最終週):
+
+- **rosbag2 + episode_record の理解 + 1 task attempt 構造化記録** (Lab 7) — SP1 W1 Lab 1 turtlesim bag を再利用、`q1_package_id: not_applicable` / `trial_id: training_*` / `environment_mode: mock` で Q1 trial と区別
+- **Safety SOP / safe no-action / Phase 0 vs Q1 境界の語彙獲得** (L8) — UR safety references は instructional examples、ISO 10218-1/-2:2025 は overview のみ
+- **Q1 Reduced Lv1 Execution Package の作成 (3 templates 統合)** (Lab 8) — Q1 Package 8 行で W1-W3 artifacts を `source_artifact_path` で参照、`q1_w1_preflight` 8 項目 + `re_judge_gates` 4 件 (`q1_w1_pre_start` / `q1_w1_exit` / `q1_mid_point` / `q1_closeout`) 必須
+- **Sandbox W1-W4 最終レビュー + Q1 移行教訓** (Lab 8b) — **Codex 利用は任意**、human-found patterns 5+ + Q1 migration lessons 3+ 必須
+
+提出物テンプレート 4 件:
+
+- episode_record_template (1 task attempt)
+- trial_sheet_template (15 planned rows skeleton)
+- safety_checklist_template (Phase 0 では `training_draft_only`)
+- q1_reduced_lv1_execution_package_template (**Phase 0 → Q1 handoff artifact 自体**)
+
+Phase 0 完了宣言は控えめに。Q1 移行は Q1 Package §8 safety review + `q1_w1_preflight` 8 項目 + 1 pilot trial review が完了してから。
+
 ## 今後の予定
 
 | サブプロジェクト | 対象週 | 主なコンテンツ |
 |------------------|--------|----------------|
 | SP2 | **完了 (Week 2 — Manipulation / Robot Adapter)** |
 | SP3 | **完了 (Week 3 — Simulation Bridge)** |
-| SP4              | Week 4 | Logging / Evaluation / Safety + Q1統合（W4 L7-L8、Lab7、Lab8、Lab8b） |
+| SP4 | **完了 (Week 4 — Logging / Eval / Safety + Q1 Reduced Lv1 Execution Package)** |
 
 ロードマップの詳細は仕様書 §4.1 を参照してください: `docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md`
 

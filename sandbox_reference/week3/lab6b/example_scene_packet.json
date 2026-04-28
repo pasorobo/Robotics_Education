@@ -1,0 +1,33 @@
+{
+  "scene_packet": {
+    "image_url": null,
+    "obstacles": [],
+    "timestamp": 1714176000.0,
+    "source": "Panda_demo_lab3"
+  },
+  "robot_state": {
+    "joints": {
+      "panda_joint1": 0.0,
+      "panda_joint2": -0.7854,
+      "panda_joint3": 0.0,
+      "panda_joint4": -2.3562,
+      "panda_joint5": 0.0,
+      "panda_joint6": 1.5708,
+      "panda_joint7": 0.7854
+    },
+    "ee_pose": {
+      "position": [0.307, 0.0, 0.59],
+      "orientation": [1.0, 0.0, 0.0, 0.0]
+    },
+    "battery": null,
+    "source": "minimal_robot_mock_hardware_lab4"
+  },
+  "candidate_set": [
+    {
+      "id": "cand_001",
+      "grasp_pose": [0.307, 0.0, 0.45, 0.0, 0.0, 0.0],
+      "score": 0.82
+    }
+  ],
+  "action_intent": null
+}

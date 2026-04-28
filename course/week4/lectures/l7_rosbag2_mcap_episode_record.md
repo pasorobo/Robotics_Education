@@ -53,7 +53,7 @@ Lab 7 では新たに録画せず、`sandbox_reference/week1/lab1/{bag_info.txt,
 
 ## 6. failure_reason taxonomy
 
-`failure_reason` は以下の 11 値 (10 失敗 taxonomy + `none`):
+`failure_reason` は以下の 10 値 (8 失敗 taxonomy + `none` + `unknown`):
 
 `none | perception_failure | planning_failure | control_or_execution_failure | sim_bridge_failure | environment_or_setup_failure | safety_blocked | operator_error | logging_or_data_failure | unknown`
 

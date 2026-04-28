@@ -123,6 +123,33 @@ EXPECTED_FILES=(
     "sandbox_reference/week3/lab6b/execution_log.txt"
     "docs/superpowers/specs/2026-04-28-robotics-course-sp3-design.md"
     "docs/superpowers/plans/2026-04-28-robotics-course-sp3-plan.md"
+    # === SP4 / Week 4 (Logging / Eval / Safety + Q1 Package) ===
+    "course/week4/README.md"
+    "course/week4/lectures/l7_rosbag2_mcap_episode_record.md"
+    "course/week4/lectures/l8_safety_sop_safe_no_action.md"
+    "course/week4/labs/lab7_episode_record/README.md"
+    "course/week4/labs/lab7_episode_record/CHECKLIST.md"
+    "course/week4/labs/lab7_episode_record/HINTS.md"
+    "course/week4/labs/lab8_q1_execution_package/README.md"
+    "course/week4/labs/lab8_q1_execution_package/CHECKLIST.md"
+    "course/week4/labs/lab8_q1_execution_package/HINTS.md"
+    "course/week4/labs/lab8b_sandbox_final_review/README.md"
+    "course/week4/labs/lab8b_sandbox_final_review/CHECKLIST.md"
+    "course/week4/labs/lab8b_sandbox_final_review/HINTS.md"
+    "course/week4/deliverables/episode_record_template.md"
+    "course/week4/deliverables/trial_sheet_template.md"
+    "course/week4/deliverables/safety_checklist_template.md"
+    "course/week4/deliverables/q1_reduced_lv1_execution_package_template.md"
+    "sandbox_reference/week4/episode_record_example.md"
+    "sandbox_reference/week4/trial_sheet_example.md"
+    "sandbox_reference/week4/safety_checklist_example.md"
+    "sandbox_reference/week4/q1_reduced_lv1_execution_package_example.md"
+    "sandbox_reference/week4/sandbox_review_summary_example.md"
+    "sandbox_reference/week4/bad_q1_package_example.md"
+    "sandbox_reference/week4/codex_pattern_extract_example.md"
+    "sandbox_reference/week4/lab7/README.md"
+    "sandbox_reference/week4/lab8/README.md"
+    "sandbox_reference/week4/lab8b/README.md"
 )
 
 for f in "${EXPECTED_FILES[@]}"; do
@@ -188,6 +215,27 @@ COURSE_TEN_KEY_FILES=(
     "sandbox_reference/week3/lab6/scene_packet_design.md"
     "sandbox_reference/week3/lab6b/README.md"
     "sandbox_reference/week3/lab6b/codex_prompt_lab6b.md"
+    # === SP4 / Week 4 (10-key required: lecture/lab/template/week/reference) ===
+    "course/week4/README.md"
+    "course/week4/lectures/l7_rosbag2_mcap_episode_record.md"
+    "course/week4/lectures/l8_safety_sop_safe_no_action.md"
+    "course/week4/labs/lab7_episode_record/README.md"
+    "course/week4/labs/lab8_q1_execution_package/README.md"
+    "course/week4/labs/lab8b_sandbox_final_review/README.md"
+    "course/week4/deliverables/episode_record_template.md"
+    "course/week4/deliverables/trial_sheet_template.md"
+    "course/week4/deliverables/safety_checklist_template.md"
+    "course/week4/deliverables/q1_reduced_lv1_execution_package_template.md"
+    "sandbox_reference/week4/episode_record_example.md"
+    "sandbox_reference/week4/trial_sheet_example.md"
+    "sandbox_reference/week4/safety_checklist_example.md"
+    "sandbox_reference/week4/q1_reduced_lv1_execution_package_example.md"
+    "sandbox_reference/week4/sandbox_review_summary_example.md"
+    "sandbox_reference/week4/bad_q1_package_example.md"
+    "sandbox_reference/week4/codex_pattern_extract_example.md"
+    "sandbox_reference/week4/lab7/README.md"
+    "sandbox_reference/week4/lab8/README.md"
+    "sandbox_reference/week4/lab8b/README.md"
 )
 
 REQUIRED_KEYS=(type id title week duration_min prerequisites worldcpj_ct roles references deliverables)
@@ -524,6 +572,150 @@ check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md"
 check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "contact" "軸 2: contact"
 check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "parallel data" "軸 3: parallel data"
 check_pattern_must "sandbox_reference/week3/simulator_decision_table_example.md" "ROS 2 統合" "軸 4: ROS 2 統合"
+
+# ---------- G4: SP4 / Week 4 patterns ----------
+echo
+echo "==== G4: SP4 (Week 4) content patterns ===="
+
+# --- L7 lecture (must) ---
+L7=course/week4/lectures/l7_rosbag2_mcap_episode_record.md
+check_pattern_must "$L7" "rosbag2" "L7 rosbag2"
+check_pattern_must "$L7" "MCAP" "L7 MCAP"
+check_pattern_must "$L7" "episode_record" "L7 episode_record"
+check_pattern_must "$L7" "failure_reason" "L7 failure_reason"
+check_pattern_must "$L7" "taxonomy" "L7 taxonomy"
+check_pattern_must "$L7" "duration_sec" "L7 duration_sec"
+check_pattern_must "$L7" "evidence_path" "L7 evidence_path"
+check_pattern_must "$L7" "services/actions recording" "L7 services/actions"
+check_pattern_must "$L7" "(Stretch|任意)" "L7 Stretch|任意"
+check_pattern_must "$L7" "(Course baseline 範囲外|out of scope for the Course baseline)" "L7 baseline out-of-scope"
+
+# --- L8 lecture (must) ---
+L8=course/week4/lectures/l8_safety_sop_safe_no_action.md
+check_pattern_must "$L8" "(Standard Operating Procedure|SOP)" "L8 SOP"
+check_pattern_must "$L8" "emergency stop" "L8 emergency stop"
+check_pattern_must "$L8" "safeguard" "L8 safeguard"
+check_pattern_must "$L8" "protective" "L8 protective"
+check_pattern_must "$L8" "(manual_reset_required|manual reset)" "L8 manual reset"
+check_pattern_must "$L8" "not_normal_stop" "L8 not_normal_stop"
+check_pattern_must "$L8" "not_auto_resume" "L8 not_auto_resume"
+check_pattern_must "$L8" "safe no-action" "L8 safe no-action"
+check_pattern_must "$L8" "operator confirmation" "L8 operator confirmation"
+check_pattern_must "$L8" "(not an approval artifact|approval artifact ではない)" "L8 not an approval artifact"
+check_pattern_must "$L8" "training draft" "L8 training draft"
+check_pattern_must "$L8" "(instructional examples|教材上の例)" "L8 instructional examples"
+check_pattern_must "$L8" "ISO 10218" "L8 ISO 10218"
+
+# --- L8 lecture (must-not, with inline-code strip) ---
+check_pattern_must_not_strip "$L8" "non.recoverable" "L8 must-not non-recoverable"
+check_pattern_must_not_strip "$L8" "自動復帰(する|できる)" "L8 must-not 自動復帰する/できる"
+check_pattern_must_not_strip "$L8" "auto.?resume.?allowed" "L8 must-not auto resume allowed"
+check_pattern_must_not_strip "$L8" "operator confirmation で safety review を代替" "L8 must-not operator confirm 代替"
+
+# --- Lab 7 README (must) ---
+LAB7R=course/week4/labs/lab7_episode_record/README.md
+check_pattern_must "$LAB7R" "episode_record_template" "Lab7 template"
+check_pattern_must "$LAB7R" "not_applicable" "Lab7 not_applicable"
+check_pattern_must "$LAB7R" "(Phase 0 training episode|not counted as a Q1|Q1 trial として数えない)" "Lab7 Q1 区別"
+
+# --- episode_record example (must) ---
+ER=sandbox_reference/week4/episode_record_example.md
+check_pattern_must "$ER" "training_trial_w1_lab1_001" "ER training_trial id"
+check_pattern_must "$ER" "turtlesim_training_object" "ER turtlesim_training_object"
+check_pattern_must "$ER" "evidence_path" "ER evidence_path"
+check_pattern_must "$ER" "result: success" "ER result success"
+check_pattern_must "$ER" "failure_reason: none" "ER failure_reason none"
+check_pattern_must "$ER" "bridge_schema_version: not_applicable" "ER bridge_schema_version"
+check_pattern_must "$ER" "adapter_version: not_applicable" "ER adapter_version"
+check_pattern_must "$ER" "environment_mode: mock" "ER environment_mode"
+check_pattern_must "$ER" "q1_package_id: not_applicable" "ER q1_package_id"
+check_pattern_must "$ER" "trial_sheet_id: not_applicable" "ER trial_sheet_id"
+
+# --- Lab 8 README (must) ---
+LAB8R=course/week4/labs/lab8_q1_execution_package/README.md
+check_pattern_must "$LAB8R" "q1_reduced_lv1_execution_package_template" "Lab8 q1 template"
+check_pattern_must "$LAB8R" "safety_checklist_template" "Lab8 safety template"
+check_pattern_must "$LAB8R" "trial_sheet_template" "Lab8 trial template"
+check_pattern_must "$LAB8R" "source_artifact_path" "Lab8 source_artifact_path"
+check_pattern_must "$LAB8R" "source_template" "Lab8 source_template"
+check_pattern_must "$LAB8R" "15 planned rows" "Lab8 15 planned rows"
+check_pattern_must "$LAB8R" "q1_w1_preflight" "Lab8 q1_w1_preflight"
+check_pattern_must "$LAB8R" "re_judge_gates" "Lab8 re_judge_gates"
+check_pattern_must "$LAB8R" "1 pilot trial" "Lab8 1 pilot trial"
+check_pattern_must "$LAB8R" "pilot review" "Lab8 pilot review"
+check_pattern_must "$LAB8R" "(5 物体 × 3 trials 直行禁止|direct_15_trials_without_pilot)" "Lab8 直行禁止"
+
+# --- Lab 8b README (must) ---
+LAB8BR=course/week4/labs/lab8b_sandbox_final_review/README.md
+check_pattern_must "$LAB8BR" "(Codex 利用は.*任意|Codex.*optional)" "Lab8b Codex 任意"
+check_pattern_must "$LAB8BR" "summarize" "Lab8b summarize"
+check_pattern_must "$LAB8BR" "(must not implement|判断・実装.*不可)" "Lab8b implement 不可"
+check_pattern_must "$LAB8BR" "must not make scope decisions" "Lab8b scope decisions 不可"
+check_pattern_must "$LAB8BR" "(human-found patterns|自分で見つけた pattern)" "Lab8b human-found"
+check_pattern_must "$LAB8BR" "(Q1 migration lessons|Q1 移行教訓)" "Lab8b Q1 migration"
+check_pattern_must "$LAB8BR" "(scope decision.*human|scope.*人間|scope 判断は人間)" "Lab8b scope by human"
+
+# --- 4 templates artifact_status (must) ---
+check_pattern_must "course/week4/deliverables/episode_record_template.md" "artifact_status: template" "T-EPISODE artifact_status"
+check_pattern_must "course/week4/deliverables/trial_sheet_template.md" "artifact_status: template" "T-TRIAL artifact_status"
+check_pattern_must "course/week4/deliverables/safety_checklist_template.md" "artifact_status: template" "T-SAFETY artifact_status"
+check_pattern_must "course/week4/deliverables/q1_reduced_lv1_execution_package_template.md" "artifact_status: template" "T-Q1PKG artifact_status"
+
+# --- episode_record template (must, field-level) ---
+TEPI=course/week4/deliverables/episode_record_template.md
+for kw in "episode_id:" "q1_package_id:" "trial_id:" "object_id:" "environment_mode:" "adapter_version:" "bridge_schema_version:" "evidence_path:" "result:" "failure_reason:" "review_status:"; do
+    check_pattern_must "$TEPI" "$kw" "T-EPISODE field $kw"
+done
+
+# --- trial_sheet template (must) ---
+TTRI=course/week4/deliverables/trial_sheet_template.md
+for kw in "trial_sheet_id:" "safety_check_id:" "total_planned_rows: 15" "trial_status:" "kpi_grasp_success:" "kpi_time_to_grasp_sec:" "skip_or_block_reason:"; do
+    check_pattern_must "$TTRI" "$kw" "T-TRIAL field $kw"
+done
+
+# --- safety_checklist template (must) ---
+TSAF=course/week4/deliverables/safety_checklist_template.md
+for kw in "safety_check_id:" "phase0_status: training_draft_only" "q1_blocker_if_unreviewed: true" "reviewer_name:" "reviewer_role:" "reviewed_at:" "stop_condition:" "other_stop_condition_detail:" "forbidden_operations:" "safe_no_action_conditions:" "description_ja:"; do
+    check_pattern_must "$TSAF" "$kw" "T-SAFETY field $kw"
+done
+
+# --- q1 package template (must, 8 row meta + meta keys + gate ids) ---
+TQ1=course/week4/deliverables/q1_reduced_lv1_execution_package_template.md
+for kw in "q1_package_id:" "phase0_handoff: true" "bridge_schema_version:" "q1_execution_mode:" "owner_role:" "next_decision_owner:" "phase0_review_summary_path:" "phase0_to_q1_handoff_note:" "1_scope_lv1_boundary" "2_target_task_gate" "3_environment_stack" "4_robot_adapter_readiness" "5_simulation_bridge_status" "6_logging_episode_plan" "7_trial_kpi_plan" "8_safety_review_go_no_go" "source_artifact_path:" "source_template:" "q1_w1_preflight:" "re_judge_gates:" "q1_w1_pre_start" "q1_w1_exit" "q1_mid_point" "q1_closeout"; do
+    check_pattern_must "$TQ1" "$kw" "T-Q1PKG field $kw"
+done
+
+# --- q1 package example (must) ---
+Q1EX=sandbox_reference/week4/q1_reduced_lv1_execution_package_example.md
+for kw in "q1_w1_pre_start" "q1_w1_exit" "q1_mid_point" "q1_closeout" "phase0_handoff: true" "phase0_review_summary_path" "q1_execution_mode" "owner_role"; do
+    check_pattern_must "$Q1EX" "$kw" "Q1ex $kw"
+done
+
+# --- sandbox_review_summary example (must) ---
+SR=sandbox_reference/week4/sandbox_review_summary_example.md
+check_pattern_must "$SR" "(human-found patterns|自分で見つけた pattern)" "SR human-found"
+check_pattern_must "$SR" "(Q1 migration lessons|Q1 移行教訓)" "SR Q1 migration"
+check_pattern_must "$SR" "Codex.*N/A" "SR Codex N/A"
+
+# --- references.md (must) ---
+for n in 28 29 30 31 32; do
+    check_pattern_must "docs/references.md" "R-${n}\b" "ref R-${n}"
+done
+
+# --- check_structure.sh self-reference (must, structure markers) ---
+check_pattern_must "tools/check_structure.sh" "_strip_inline_code" "self _strip_inline_code"
+check_pattern_must "tools/check_structure.sh" "check_pattern_must_not_strip" "self check_pattern_must_not_strip"
+check_pattern_must "tools/check_structure.sh" "check_pattern_negative_example" "self check_pattern_negative_example"
+
+# --- verify_env.sh self-reference (must) ---
+check_pattern_must "tools/verify_env.sh" "week 4" "self --week 4"
+check_pattern_must "tools/verify_env.sh" "has_ros_pkg_or_deb" "self has_ros_pkg_or_deb"
+
+# --- bad_q1_package_example (NEGATIVE — not subject to positive checks above) ---
+BAD=sandbox_reference/week4/bad_q1_package_example.md
+check_pattern_negative_example "$BAD" "artifact_status: intentionally_invalid_example" "BAD invalid marker"
+check_pattern_negative_example "$BAD" "do_not_copy: true" "BAD do_not_copy"
+check_pattern_negative_example "$BAD" "(不採用例|bad example)" "BAD marker"
 
 # ---------- G5a: Local link resolution ----------
 echo

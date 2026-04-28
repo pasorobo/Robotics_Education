@@ -70,11 +70,11 @@ date: 2026-04-27
 
 | ID | タイトル | URL | 種別 | 対応Week | 対応Role | 最終確認日 |
 |---|---|---|---|---|---|---|
-| R-28 | rosbag2 MCAP storage plugin | https://docs.ros.org/en/ros2_packages/rolling/api/rosbag2_storage_mcap/index.html | 公式Docs | 4 | logging, common | 2026-04-27 |
-| R-29 | LeRobot real-world robot tutorial | https://huggingface.co/docs/lerobot/main/en/getting_started_real_world_robot | 公式Tutorial | 4 | logging, common | 2026-04-27 |
-| R-30 | Universal Robots Safety FAQ | https://www.universal-robots.com/articles/ur/safety/safety-faq/ | 公式FAQ | 4 | safety, adapter | 2026-04-27 |
-| R-31 | Universal Robots safety manual page | https://www.universal-robots.com/manuals/EN/HTML/SW10_12/Content/prod-usr-man/complianceUR10e/H_g5_sections/safety_g5/safety_intro.htm | 公式Manual | 4 | safety, adapter | 2026-04-27 |
-| R-32 | ISO 10218-1:2025 overview | https://www.iso.org/standard/73933.html | 標準概要 | 4 | safety, adapter | 2026-04-27 |
+| R-28 | ROS 2 Humble — ros2 bag CLI tutorial (record/play/info、storage backend default = sqlite3) | https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html | 公式Tutorial | 4 | logging, common | 2026-04-28 |
+| R-29 | rosbag2_storage_mcap — MCAP file format storage plugin for rosbag2 (`--storage mcap`) | https://github.com/ros-tooling/rosbag2_storage_mcap | 公式GitHub | 4 | logging, common | 2026-04-28 |
+| R-30 | Universal Robots — Emergency Stop note ("complementary protective measure, not a safeguard; not designed to prevent injury") (instructional reference only) | https://www.universal-robots.com/articles/ur/safety/emergency-stop/ | 公式Docs | 4 | safety, adapter | 2026-04-28 |
+| R-31 | Universal Robots — Safety overview / manual reset procedure for emergency stop (instructional reference only) | https://www.universal-robots.com/articles/ur/safety/ | 公式Docs | 4 | safety, adapter | 2026-04-28 |
+| R-32 | ISO 10218-1:2025 (Robotics — Safety requirements — Part 1: Industrial robots) and ISO 10218-2:2025 (Part 2: Industrial robot applications and robot cells). Use as overview reference only; the course does not reproduce paid standard text. | https://www.iso.org/standard/73933.html | 標準概要 | 4 | safety, adapter | 2026-04-28 |
 
 ## Git / Codex Sandbox / AI協働 (R-33〜R-39)
 

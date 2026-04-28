@@ -60,12 +60,27 @@ Week 2 教材一式 (3 本柱):
 
 Stretch goal (Robot Adapter / Safety Role Owner 限定): URSim 接続、URDF + IK mock adapter (KDL ベース) は SP5 / 個別宿題で扱う。
 
+## SP3で何ができるか
+
+Week 3 教材一式 (3 本柱):
+
+- **Gazebo Fortress 起動確認 + ros_gz_bridge YAML 設計** (Lab 5) — `/clock` mandatory bridge YAML を写経、`/joint_states` は概念例 (joint を持つ robot model 必要、Stretch goal)
+- **provisional schema 8 field 設計演習** (Lab 6) — plan §8.3 流用 (input: scene_packet/robot_state/candidate_set/action_intent、output: observation/execution_result/failure_reason/metrics)、自分の MS Lv1 / CC Gate 0-a 想定 case で 8 field 全埋め
+- **Codex no-op bridge stub PR レビュー一巡** (Lab 6b) — Lab 4b 同型 + 追加禁止リスト (実 simulator/bridge/Affordance 判定自動化)、JSON file 入力 finite Python script
+
+提出物テンプレート 2 件:
+
+- Simulation Bridge Draft (8 field 全埋め、空欄 NG、未確定なら「未確定 / SP4-5 で評価予定」可)
+- Simulator Decision Table (4 simulator × 4 軸比較 + 自分の case 用選択判断)
+
+Stretch goal (Sim Bridge / Sandbox Bridge Role Owner 限定): 実 ros_gz_bridge で SP2 minimal_robot を Gazebo 上で動かす統合、MuJoCo / ManiSkill / Isaac の hands-on は SP5 / 個別宿題で扱う。
+
 ## 今後の予定
 
 | サブプロジェクト | 対象週 | 主なコンテンツ |
 |------------------|--------|----------------|
 | SP2 | **完了 (Week 2 — Manipulation / Robot Adapter)** |
-| SP3              | Week 3 | Simulation Bridge（W3 L5-L6、Lab5、Lab6、Lab6b） |
+| SP3 | **完了 (Week 3 — Simulation Bridge)** |
 | SP4              | Week 4 | Logging / Evaluation / Safety + Q1統合（W4 L7-L8、Lab7、Lab8、Lab8b） |
 
 ロードマップの詳細は仕様書 §4.1 を参照してください: `docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md`

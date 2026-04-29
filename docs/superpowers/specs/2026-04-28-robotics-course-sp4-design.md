@@ -203,15 +203,16 @@ sandbox_reference/week4/lab8b/README.md    type: reference
 sandbox_reference/week4/codex_pattern_extract_example.md     type: reference  (Lab 8b 任意)
 ```
 
-### 4.3 修正 5 (G4 で内容追加検査、ファイル数変動なし)
+### 4.3 修正 4 (G4 で内容追加検査、ファイル数変動なし)
 
 ```
 README.md                       # Week 4 link 追加
-course/README.md                # Week 4 entry 追加
 tools/verify_env.sh             # --week 4 mode 追加
 tools/check_structure.sh        # SP4 EXPECTED_FILES + G4 patterns + mode 分岐実装
 docs/references.md              # R-28〜R-32 追加
 ```
+
+> **Note (SP4 implementation 後の修正)**: 当初設計では `course/README.md` も修正対象 (5 modify) としていたが、本 repository には `course/` 直下の README は元々存在しない (course/ 配下は `00_setup/`, `week1..4/` の sub-directory のみ)。T6 commit で skip 理由を記録済。実際の修正は **4 file**、累計 changed = **32 file** (28 new + 4 modify)。
 
 ## 5. Lecture content invariants
 

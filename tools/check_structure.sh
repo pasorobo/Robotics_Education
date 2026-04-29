@@ -17,7 +17,7 @@ warn() { printf "  [WARN] %s\n" "$1"; WARN=$((WARN+1)); }
 ok()   { PASSED=$((PASSED+1)); }
 
 # ---------- G1: File existence ----------
-echo "==== G1: File existence (42 expected files) ===="
+echo "==== G1: File existence ===="
 
 EXPECTED_FILES=(
     "README.md"

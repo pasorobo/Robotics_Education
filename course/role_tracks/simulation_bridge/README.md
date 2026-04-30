@@ -52,4 +52,4 @@ Q1 Package §5 simulation_bridge_status 行の `review_status` が `reviewed_wit
 
 ## What not to implement yet
 
-本 stub は `stub_only: true` であり、alternative simulator (MuJoCo / ManiSkill / Isaac 等) の install 手順 / hands-on lab / `<gazebo>` URDF extension / SDF world ファイル設計 の content は SP5 では作らない。activation 時に新 sub-project (`sp5x_candidate_simulation_bridge`) として brainstorming → spec → plan → implementation を行う。具体 simulator 名を本 stub の prose に追加しない方針 (spec §3.5)。
+本 stub は `stub_only: true` であり、alternative simulator (MuJoCo / ManiSkill / Isaac 等) の install 手順 / hands-on lab / `<gazebo>` URDF extension / SDF world ファイル設計 の content は SP5 では作らない。activation 時に新 sub-project (`sp5x_candidate_simulation_bridge`) として brainstorming → spec → plan → implementation を行う。具体 simulator 名を本 stub の prose に追加しない方針 (spec §5.3)。

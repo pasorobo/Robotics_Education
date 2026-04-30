@@ -150,6 +150,15 @@ EXPECTED_FILES=(
     "sandbox_reference/week4/lab7/README.md"
     "sandbox_reference/week4/lab8/README.md"
     "sandbox_reference/week4/lab8b/README.md"
+    # === SP5 / Role Tracks (frame only, A2-Lite) ===
+    "course/role_tracks/README.md"
+    "course/role_tracks/environment_toolchain_readiness/README.md"
+    "course/role_tracks/robot_adapter_readiness/README.md"
+    "course/role_tracks/simulation_bridge/README.md"
+    "course/role_tracks/logging_evidence_chain/README.md"
+    "course/role_tracks/trial_kpi_evaluation/README.md"
+    "course/role_tracks/safety_review_sop/README.md"
+    "course/role_tracks/execution_coordination_governance/README.md"
 )
 
 for f in "${EXPECTED_FILES[@]}"; do
@@ -236,6 +245,15 @@ COURSE_TEN_KEY_FILES=(
     "sandbox_reference/week4/lab7/README.md"
     "sandbox_reference/week4/lab8/README.md"
     "sandbox_reference/week4/lab8b/README.md"
+    # === SP5 / Role Tracks (10-key required: index, reference) ===
+    "course/role_tracks/README.md"
+    "course/role_tracks/environment_toolchain_readiness/README.md"
+    "course/role_tracks/robot_adapter_readiness/README.md"
+    "course/role_tracks/simulation_bridge/README.md"
+    "course/role_tracks/logging_evidence_chain/README.md"
+    "course/role_tracks/trial_kpi_evaluation/README.md"
+    "course/role_tracks/safety_review_sop/README.md"
+    "course/role_tracks/execution_coordination_governance/README.md"
 )
 
 REQUIRED_KEYS=(type id title week duration_min prerequisites worldcpj_ct roles references deliverables)
@@ -718,6 +736,45 @@ BAD=sandbox_reference/week4/bad_q1_package_example.md
 check_pattern_negative_example "$BAD" "artifact_status: intentionally_invalid_example" "BAD invalid marker"
 check_pattern_negative_example "$BAD" "do_not_copy: true" "BAD do_not_copy"
 check_pattern_negative_example "$BAD" "(不採用例|bad example)" "BAD marker"
+
+# ---------- G4: SP5 / Role Tracks patterns ----------
+echo
+echo "==== G4: SP5 (Role Tracks) content patterns ===="
+
+# Per-stub generic (8 × 7 = 56) + track-specific exact (1 × 7 = 7)
+for track in environment_toolchain_readiness robot_adapter_readiness simulation_bridge \
+             logging_evidence_chain trial_kpi_evaluation safety_review_sop \
+             execution_coordination_governance; do
+    F="course/role_tracks/${track}/README.md"
+    for kw in "track_id:" "q1_touchpoint:" "activation_trigger:" "future_spec_id:" \
+              "stub_only: true" "do_not_implement_yet: true" "out_of_scope:" \
+              "activation_status: inactive"; do
+        check_pattern_must "$F" "$kw" "SP5 stub ${track} ${kw}"
+    done
+    check_pattern_must "$F" "future_spec_id: sp5x_candidate_${track}" "SP5 stub ${track} sp5x_candidate"
+done
+
+# Index README (6)
+INDEX="course/role_tracks/README.md"
+check_pattern_must "$INDEX" "role_tracks" "SP5 index role_tracks"
+check_pattern_must "$INDEX" "(順序.*優先順位.*ではない|order.*not.*priority)" "SP5 index priority disclaimer"
+check_pattern_must "$INDEX" "Q1 W1 preflight" "SP5 index activation context"
+check_pattern_must "$INDEX" "activation_trigger" "SP5 index meta key"
+check_pattern_must "$INDEX" "sp5x_candidate_" "SP5 index naming convention"
+check_pattern_must "$INDEX" "stub_only" "SP5 index A2-Lite signal"
+
+# execution_coordination_governance Codex 境界 (4)
+ECG="course/role_tracks/execution_coordination_governance/README.md"
+check_pattern_must "$ECG" "Codex must not implement robotics logic" "ECG Codex no-implement"
+check_pattern_must "$ECG" "Codex must not make scope decisions" "ECG Codex no-scope"
+check_pattern_must "$ECG" "Codex must not make safety decisions" "ECG Codex no-safety"
+check_pattern_must "$ECG" "Codex must not replace human pilot review" "ECG Codex no-replace"
+
+# Self-reference (3)
+SELF="tools/check_structure.sh"
+check_pattern_must "$SELF" "course/role_tracks/" "self SP5 EXPECTED_FILES"
+check_pattern_must "$SELF" "sp5x_candidate_" "self SP5 track-specific check"
+check_pattern_must "$SELF" "2026-04-30-robotics-course-sp5" "self SP5 spec/plan registration"
 
 # ---------- G5a: Local link resolution ----------
 echo

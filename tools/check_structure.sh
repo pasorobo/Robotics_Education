@@ -270,12 +270,14 @@ SPEC_FILES=(
     "docs/superpowers/specs/2026-04-27-robotics-course-sp2-design.md"
     "docs/superpowers/specs/2026-04-28-robotics-course-sp3-design.md"
     "docs/superpowers/specs/2026-04-28-robotics-course-sp4-design.md"
+    "docs/superpowers/specs/2026-04-30-robotics-course-sp5-role-tracks-meta-design.md"
 )
 PLAN_FILES=(
     "docs/superpowers/plans/2026-04-27-robotics-course-sp1-plan.md"
     "docs/superpowers/plans/2026-04-27-robotics-course-sp2-plan.md"
     "docs/superpowers/plans/2026-04-28-robotics-course-sp3-plan.md"
     "docs/superpowers/plans/2026-04-28-robotics-course-sp4-plan.md"
+    "docs/superpowers/plans/2026-04-30-robotics-course-sp5-role-tracks-meta-plan.md"
 )
 SPEC_KEYS=(type id title date status sub_project related_plan)
 PLAN_KEYS=(type id title date status sub_project related_spec)

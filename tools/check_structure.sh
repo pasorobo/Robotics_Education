@@ -776,6 +776,11 @@ check_pattern_must "$SELF" "course/role_tracks/" "self SP5 EXPECTED_FILES"
 check_pattern_must "$SELF" "sp5x_candidate_" "self SP5 track-specific check"
 check_pattern_must "$SELF" "2026-04-30-robotics-course-sp5" "self SP5 spec/plan registration"
 
+# Root README SP5 entry (2)
+ROOT="README.md"
+check_pattern_must "$ROOT" "Optional Role Track frame only" "root README SP5 frame-only"
+check_pattern_must "$ROOT" "course/role_tracks/" "root README SP5 link"
+
 # ---------- G5a: Local link resolution ----------
 echo
 echo "==== G5a: Local link resolution ===="

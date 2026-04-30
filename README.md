@@ -93,6 +93,12 @@ Week 4 教材一式 (Phase 0 最終週):
 
 Phase 0 完了宣言は控えめに。Q1 移行は Q1 Package §8 safety review + `q1_w1_preflight` 8 項目 + 1 pilot trial review が完了してから。
 
+## SP5で何ができるか
+
+Optional Role Track frame only。Phase 0 完了後の任意拡張として `course/role_tracks/` に 7 track stub (frame only) を整備。Q1 W1 preflight や `re_judge_gates` の観察結果により track が activate された時点で個別 SP5x sub-project として content を実装する。
+
+詳細: [Optional Role Track frame](course/role_tracks/README.md)
+
 ## 今後の予定
 
 | サブプロジェクト | 対象週 | 主なコンテンツ |
@@ -100,6 +106,7 @@ Phase 0 完了宣言は控えめに。Q1 移行は Q1 Package §8 safety review 
 | SP2 | **完了 (Week 2 — Manipulation / Robot Adapter)** |
 | SP3 | **完了 (Week 3 — Simulation Bridge)** |
 | SP4 | **完了 (Week 4 — Logging / Eval / Safety + Q1 Reduced Lv1 Execution Package)** |
+| SP5 | **完了 (Optional Role Track frame only — SP5x 起動の breadcrumb)** |
 
 ロードマップの詳細は仕様書 §4.1 を参照してください: `docs/superpowers/specs/2026-04-27-robotics-course-sp1-design.md`
 
